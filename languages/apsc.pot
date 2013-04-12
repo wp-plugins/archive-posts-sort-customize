@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Archive Posts Sort Customize\n"
+"POT-Creation-Date: 2013-04-02 14:11+0900\n"
+"PO-Revision-Date: 2013-04-11 23:56+0900\n"
+"Last-Translator: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"Language-Team: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "Customize the display order of the list of Archive Posts."
+msgstr ""
+
+msgid "Category Archive Sort Customize"
+msgstr ""
+
+msgid "Tag Archive Sort Customize"
+msgstr ""
+
+msgid "Please set your favorite."
+msgstr ""
+
+msgid "Number of posts per page"
+msgstr ""
+
+msgid "The default is <strong>%s</strong>."
+msgstr ""
+
+msgid "Sort settings"
+msgstr ""
+
+msgid "View all posts"
+msgstr ""
+
+msgid "Follow Reading Setting"
+msgstr ""
+
+msgid "Current number of Reading Setting"
+msgstr ""
+
+msgid "Set the number of posts"
+msgstr ""
+
+msgid "Sort target"
+msgstr ""
+
+msgid "Comments Count"
+msgstr ""
+
+msgid "Please enter the name of the custom field you want to sort."
+msgstr ""
+
+msgid "Custom Fields Name"
+msgstr ""
+
+msgid "Click here, please look for the required custom fields if you do not know the name of the custom field."
+msgstr ""
+
+msgid "From new to old"
+msgstr ""
+
+msgid "From old to new"
+msgstr ""
+
+msgid "From many to small"
+msgstr ""
+
+msgid "From small to many"
+msgstr ""
+
+msgid "Would initialize?"
+msgstr ""
+
