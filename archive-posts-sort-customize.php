@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.0
+Version: 1.1
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_0
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_1
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -45,7 +45,7 @@ class APSC
 
 
 	function __construct() {
-		$this->Ver = '1.0';
+		$this->Ver = '1.1';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->ltd = 'apsc';
@@ -92,8 +92,10 @@ class APSC
 
 	// PluginSetup
 	function admin_menu() {
-		add_menu_page( __( 'Category Archive Sort Customize' , $this->ltd ) , __( 'Category Archive Sort Customize' , $this->ltd ) , 'administrator', $this->Slug , array( $this , 'setting_cat') );
-		add_submenu_page( $this->Slug , __( 'Tag Archive Sort Customize' , $this->ltd ) , __( 'Tag Archive Sort Customize' , $this->ltd ) , 'administrator' , 'page' . $this->RecordBaseName , array( $this , 'setting_tag' ) );
+		add_menu_page( __( 'Posts Sort Customize' , $this->ltd ) , __( 'Posts Sort Customize' , $this->ltd ) , 'administrator', $this->Slug , array( $this , 'setting_home') );
+
+		add_submenu_page( $this->Slug , __( 'Category Archive Sort Customize' , $this->ltd ) , __( 'Category Archive' , $this->ltd ) , 'administrator' , 'cat' . $this->RecordBaseName , array( $this , 'setting_cat' ) );
+		add_submenu_page( $this->Slug , __( 'Tag Archive Sort Customize' , $this->ltd ) , __( 'Tag Archive' , $this->ltd ) , 'administrator' , 'tag' . $this->RecordBaseName , array( $this , 'setting_tag' ) );
 	}
 
 	// Translation File Check
@@ -107,6 +109,13 @@ class APSC
 	}
 
 
+
+	// SettingPage
+	function setting_home() {
+		add_filter( 'admin_footer_text' , array( $this , 'layout_footer' ) );
+		$this->DisplayDonation();
+		include_once 'inc/setting_home.php';
+	}
 
 	// SettingPage
 	function setting_cat() {
@@ -137,6 +146,100 @@ class APSC
 	}
 
 
+
+	// Setting Item
+	function get_sorting_posts_per_page( $posts_per_page , $posts_per_page_num ) {
+
+		echo '<p>' . sprintf( __( 'The default is <strong>%s</strong>.' , $this->ltd ) , __( 'Follow Reading Setting' , $this->ltd ) ) . '</p>';
+
+		$Sort = array( "all" => __( 'View all posts' , $this->ltd ) , "default" => __( 'Follow Reading Setting' , $this->ltd ) , "set" => __( 'Set the number of posts' , $this->ltd ) );
+		foreach( $Sort as $type => $type_label ) {
+			$Checked = '';
+			if( !empty( $posts_per_page ) && $posts_per_page == $type ) {
+				$Checked = 'checked="checked"';
+			}
+			echo '<div class="posts_per_page">';
+			
+			echo '<label>';
+			echo '<input type="radio" name="data[posts_per_page]" value="' . $type . '" ' . $Checked . ' />';
+			echo $type_label;
+			if( $type == 'default' ) {
+				echo sprintf( '<span class="description">%1$s</span> <strong>%2$s</strong>%3$s' , __( 'Current number of Reading Setting' , $this->ltd ) , get_option( 'posts_per_page' ) , __( 'posts' ) );
+			}
+			echo '</label>';
+			
+			if( $type == 'set' ) {
+				echo '<span class="posts_per_page_num">';
+				$val = '';
+				if( !empty( $posts_per_page ) && $posts_per_page == 'set' && !empty( $posts_per_page_num ) ) {
+					$val = strip_tags( $posts_per_page_num );
+				}
+				echo '<input type="text" class="small-text" id="posts_per_page_num" name="data[posts_per_page_num]" value="' . $val . '" /> ' . __( 'posts' );
+				echo '</span>';
+			}
+			
+			echo '</div>';
+		}
+
+	}
+	
+	// Setting Item
+	function get_sorting_orderby( $orderby , $orderby_set ) {
+
+		echo '<p>' . sprintf( __( 'The default is <strong>%s</strong>.' , $this->ltd ) , __( 'Date' ) ) . '</p>';
+
+		$Sort = array( "date" => __( 'Date' ) , "title" => __( 'Title' ) , "author" => __( 'Author' ) , "comment_count" => __( 'Comments Count' , $this->ltd ) , "id" => 'ID' , "custom_fields" => __( 'Custom Fields' ) );
+
+		echo '<div class="orderby">';
+		echo '<select name="data[orderby]">';
+		foreach( $Sort as $type => $type_label ) {
+			$Selected = '';
+			if( !empty( $orderby ) && $orderby == $type ) {
+				$Selected = 'selected="selected"';
+			}
+			echo sprintf( '<option value="%1$s" %2$s>%3$s</option>' , $type , $Selected , $type_label );
+		}
+		echo '</select>';
+		echo '</div>';
+		
+		echo '<div class="orderby_custom_fields">';
+			echo '<p class="description">' . __( 'Please enter the name of the custom field you want to sort.' , $this->ltd ) . '</p>';
+			$val = '';
+			if( !empty( $orderby ) && $orderby == 'custom_fields' && !empty( $orderby_set ) ) {
+				$val = strip_tags( $orderby_set );
+			}
+			echo '<p>' . __( 'Custom Fields Name' , $this->ltd ) . ' : ';
+			echo '<input type="text" class="regular-text" id="orderby_set" name="data[orderby_set]" value="' . $val . '" />';
+			echo '</p>';
+			echo '<p><a href="javascript:void(0);" class="all_custom_fields">' . __( 'Click here, please look for the required custom fields if you do not know the name of the custom field.' , $this->ltd ) . '</a></p>';
+			echo '<div class="custom_fields_lists">';
+			$this->get_custom_fields();
+			echo '</div>';
+		echo '</div>';
+
+	}
+	
+	// Setting Item
+	function get_sorting_order( $order ) {
+
+		echo '<p>' . sprintf( __( 'The default is <strong>%s</strong>.' , $this->ltd ) , __( 'Descending' ) ) . '</p>';
+		echo '<select name="data[order]">';
+
+		$Sort = array( "desc" => __( 'Descending' ) , "asc" => __( 'Ascending' ) );
+
+		foreach( $Sort as $type => $type_label ) {
+			$Selected = '';
+			if( !empty( $order ) && $order == $type ) {
+				$Selected = 'selected="selected"';
+			}
+			echo sprintf( '<option value="%1$s" %2$s>%3$s</option>' , $type , $Selected , $type_label . ' (' . $type . ')' );
+		}
+
+		echo '</select>';
+		echo '<p><strong>' . __( 'Descending' ) . '</strong> : ' . __( 'From new to old' , $this->ltd ) . ' &amp; ' . __( 'From many to small' , $this->ltd ) . ' &amp; Z to A</p>';
+		echo '<p><strong>' . __( 'Ascending' ) . '</strong> : ' . __( 'From old to new' , $this->ltd ) . ' &amp; ' . __( 'From small to many' , $this->ltd ) . ' &amp; A to Z</p>';
+	}
+	
 	// Setting Item
 	function get_custom_fields() {
 		global $wpdb;
@@ -155,7 +258,8 @@ class APSC
 		}
 		echo '</ul>';
 	}
-	
+
+
 
 	// Update Setting
 	function update() {
@@ -212,8 +316,13 @@ class APSC
 	function Archive_Sort( $query ) {
 		global $wpdb;
 		$Data = array();
-		
-		if( $query->is_category() ) {
+
+		if( $query->is_home() ) {
+			$GetData = $this->get_data( 'home' );
+			if( !empty( $GetData ) ) {
+				$Data = $GetData;
+			}
+		} elseif( $query->is_category() ) {
 			$GetData = $this->get_data( 'category' );
 			if( !empty( $GetData ) ) {
 				$Data = $GetData;

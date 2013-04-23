@@ -13,21 +13,17 @@ wp_enqueue_style( $this->Slug , $this->Dir . dirname( dirname( plugin_basename( 
 wp_enqueue_style( 'thickbox' );
 
 // get data
-$Data = $this->get_data( 'tag' );
+$Data = $this->get_data( 'home' );
 
 ?>
 
 <div class="wrap">
 	<div class="icon32" id="icon-options-general"></div>
-	<h2><?php _e( 'Tag Archive Sort Customize' , $this->ltd ); ?></h2>
+	<h2><?php _e( 'Home Archive Sort Customize' , $this->ltd ); ?></h2>
 	<?php echo $this->Msg; ?>
 	<p><?php _e( 'Please set your favorite.' , $this->ltd ); ?></p>
-
-	<?php $Tag = get_tags( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) ); ?>
-	<?php if( !empty( $Tag ) ) : ?>
-		<?php $Url = get_tag_link( $Tag[0]->term_id ); ?>
-		<p><?php _e( 'View' ); ?> : <a href="<?php echo $Url; ?>?TB_iframe=1" class="thickbox"><?php echo _e( 'Tag' ); ?> <?php echo $Tag[0]->name; ?></a></p>
-	<?php endif; ?>
+	<?php $Url = get_option( 'home' ); ?>
+		<p><?php _e( 'View' ); ?> : <a href="<?php echo $Url; ?>?TB_iframe=1" class="thickbox"><?php echo _e( 'Home' ); ?></a></p>
 
 	<div class="metabox-holder columns-2 <?php echo $this->ltd; ?>">
 
@@ -37,7 +33,7 @@ $Data = $this->get_data( 'tag' );
 				<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y">
 				<?php wp_nonce_field(); ?>
 
-				<input type="hidden" name="set_sort" value="tag" />
+				<input type="hidden" name="set_sort" value="home" />
 				<div class="postbox">
 
 					<h3><?php _e( 'Sort settings' , $this->ltd ); ?></h3>

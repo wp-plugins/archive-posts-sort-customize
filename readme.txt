@@ -1,16 +1,17 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_0
-Tags: category, post, posts, tag, archive, sort
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_1
+Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.4.2
 Tested up to: 3.5.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
 
 == Description ==
 
+* Home Posts Archive Customize
 * Categories Posts Archive Customize
 * Tags Posts Archive Customize
 
@@ -36,6 +37,9 @@ These lists to Customization is possible.
 
 == Changelog ==
 
+= 1.1 =
+Made it possible to sort of home.
+
 = 1.0 =
 This is the initial release.
 
@@ -45,6 +49,7 @@ This is the initial release.
 
 == 日本語でのご説明 ==
 
+* ホーム記事一覧
 * カテゴリ記事一覧
 * タグ記事一覧
 

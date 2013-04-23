@@ -34,3 +34,8 @@
 	float: left;
 	width: 32%;
 }
+
+
+.apsc table td {
+	padding-bottom: 30px;
+}
