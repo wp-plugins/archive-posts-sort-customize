@@ -47,7 +47,7 @@ if( $donatedKey == $this->DonateKey ) :
 			<div class="stuffbox" id="aboutbox">
 				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd_do ); ?></span></h3>
 				<div class="inside">
-					<p><?php _e( 'Version check' , $this->ltd_do ); ?> : 3.4.2 - 3.5.1</p>
+					<p><?php _e( 'Version check' , $this->ltd_do ); ?> : 3.4.2 - 3.5.2</p>
 					<ul>
 						<li><a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_do ); ?></a></li>
 						<li><a href="http://wordpress.org/support/plugin/archive-posts-sort-customize" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>

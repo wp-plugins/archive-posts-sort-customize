@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.1
+Version: 1.1.1
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_1
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_1_1
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -45,7 +45,7 @@ class APSC
 
 
 	function __construct() {
-		$this->Ver = '1.1';
+		$this->Ver = '1.1.1';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->ltd = 'apsc';
