@@ -12,7 +12,7 @@ if( $donatedKey == $this->DonateKey ) :
 					<p style="color: #FFFFFF;"><?php _e( 'You are contented with this plugin?<br />By the laws of Japan, Japan\'s new paypal user can not make a donation button.<br />So i would like you to buy this plugin as the replacement for the donation.' , $this->ltd_do ); ?></p>
 					<p>&nbsp;</p>
 					<p style="text-align: center;">
-						<a href="http://gqevu6bsiz.chicappa.jp/line-break-first-and-end/?utm_source=use_plugin&utm_medium=donate&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" class="button-primary" target="_blank">Line Break First and End</a>
+						<a href="<?php echo $this->AuthorUrl; ?>line-break-first-and-end/?utm_source=use_plugin&utm_medium=donate&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" class="button-primary" target="_blank">Line Break First and End</a>
 					</p>
 					<p>&nbsp;</p>
 					<div class="donation_memo">
@@ -49,7 +49,7 @@ if( $donatedKey == $this->DonateKey ) :
 				<div class="inside">
 					<p><?php _e( 'Version check' , $this->ltd_do ); ?> : 3.4.2 - 3.5.2</p>
 					<ul>
-						<li><a href="http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_do ); ?></a></li>
+						<li><a href="<?php echo $this->AuthorUrl; ?>?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_do ); ?></a></li>
 						<li><a href="http://wordpress.org/support/plugin/archive-posts-sort-customize" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
 						<li><a href="http://wordpress.org/support/view/plugin-reviews/archive-posts-sort-customize" target="_blank"><?php _e( 'Reviews' , $this->ltd_do ); ?></a></li>
 						<li><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></li>
@@ -59,7 +59,7 @@ if( $donatedKey == $this->DonateKey ) :
 					<?php if( empty( $mofile ) ) : ?>
 						<p>
 							I am looking for a translator for this plugin.<br />
-							<a href="http://gqevu6bsiz.chicappa.jp/please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">Please translation.</a>
+							<a href="<?php echo $this->AuthorUrl; ?>please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">Please translation.</a>
 						</p>
 					<?php endif; ?>
 					<p><?php echo sprintf( __( 'Do you have a proposal you want to improve? Please contact to %s if it is necessary.' , $this->ltd_do ) , '<a href="http://wordpress.org/support/plugin/archive-posts-sort-customize" target="_blank">' . __( 'Support Forums' ) . '</a>' ); ?></p>

@@ -1,32 +1,63 @@
 <?php
 
+$PageTitle = '';
+
+if( $this->SetArchive == 'home' ) {
+	$PageTitle = __( 'Home Archive Sort Customize' , $this->ltd );
+} elseif( $this->SetArchive == 'cat' ) {
+	$PageTitle = __( 'Category Archive Sort Customize' , $this->ltd );
+} elseif( $this->SetArchive == 'tag' ) {
+	$PageTitle = __( 'Tag Archive Sort Customize' , $this->ltd );
+} elseif( $this->SetArchive == 'search' ) {
+	$PageTitle = __( 'Search Archive Sort Customize' , $this->ltd );
+}
+
+
+$ViewLink = '';
+
+if( $this->SetArchive == 'home' ) {
+	$ViewLink = array( home_url( '/' ) , __( 'Home' ) );
+} elseif( $this->SetArchive == 'cat' ) {
+	$Category = get_categories( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) );
+	if( !empty( $Category ) ) {
+		$ViewLink = array( get_category_link( $Category[0]->cat_ID ) , __( 'Category' ) );
+	}
+} elseif( $this->SetArchive == 'tag' ) {
+	$Tag = get_tags( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) );
+	if( !empty( $Tag ) ) {
+		$ViewLink = array( get_tag_link( $Tag[0]->term_id ) , __( 'Tag' ) );
+	}
+} elseif( $this->SetArchive == 'search' ) {
+	$ViewLink = array( get_search_link( 'Hello' ) , __( 'Search' ) );
+}
+
+
+
 if( !empty( $_POST["reset"] ) ) {
 	$this->update_reset();
 } elseif( !empty( $_POST["update"] ) ) {
 	$this->update();
 }
 
+
 // include js css
-$ReadedJs = array( 'jquery' , 'jquery-ui-sortable' , 'thickbox' );
-wp_enqueue_script( $this->Slug ,  $this->Dir . dirname( dirname( plugin_basename( __FILE__ ) ) ) . '.js', $ReadedJs , $this->Ver );
-wp_enqueue_style( $this->Slug , $this->Dir . dirname( dirname( plugin_basename( __FILE__ ) ) ) . '.css', array() , $this->Ver );
-wp_enqueue_style( 'thickbox' );
+$ReadedJs = array( 'jquery' , 'jquery-ui-sortable' );
+wp_enqueue_script( $this->PageSlug ,  $this->Dir . dirname( dirname( plugin_basename( __FILE__ ) ) ) . '.js', $ReadedJs , $this->Ver );
+wp_enqueue_style( $this->PageSlug , $this->Dir . dirname( dirname( plugin_basename( __FILE__ ) ) ) . '.css', array() , $this->Ver );
 
 // get data
-$Data = $this->get_data( 'tag' );
+$Data = $this->get_data( $this->SetArchive );
 
 ?>
 
 <div class="wrap">
 	<div class="icon32" id="icon-options-general"></div>
-	<h2><?php _e( 'Tag Archive Sort Customize' , $this->ltd ); ?></h2>
+	<h2><?php echo $PageTitle; ?></h2>
 	<?php echo $this->Msg; ?>
 	<p><?php _e( 'Please set your favorite.' , $this->ltd ); ?></p>
-
-	<?php $Tag = get_tags( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) ); ?>
-	<?php if( !empty( $Tag ) ) : ?>
-		<?php $Url = get_tag_link( $Tag[0]->term_id ); ?>
-		<p><?php _e( 'View' ); ?> : <a href="<?php echo $Url; ?>?TB_iframe=1" class="thickbox"><?php echo _e( 'Tag' ); ?> <?php echo $Tag[0]->name; ?></a></p>
+	
+	<?php if( !empty( $ViewLink ) ) : ?>
+		<p><?php _e( 'View' ); ?> : <a href="<?php echo $ViewLink[0]; ?>" target="_blank"><?php echo $ViewLink[1]; ?></a></p>
 	<?php endif; ?>
 
 	<div class="metabox-holder columns-2 <?php echo $this->ltd; ?>">
@@ -37,7 +68,7 @@ $Data = $this->get_data( 'tag' );
 				<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y">
 				<?php wp_nonce_field(); ?>
 
-				<input type="hidden" name="set_sort" value="tag" />
+				<input type="hidden" name="set_sort" value="<?php echo $this->SetArchive; ?>" />
 				<div class="postbox">
 
 					<h3><?php _e( 'Sort settings' , $this->ltd ); ?></h3>

@@ -1,10 +1,10 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_1_1
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_2
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.4.2
 Tested up to: 3.5.2
-Stable tag: 1.1.1
+Stable tag: 1.2
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
@@ -37,6 +37,9 @@ These lists to Customization is possible.
 
 == Changelog ==
 
+= 1.2 =
+* Added Search support.
+
 = 1.1.1 =
 * Some translation fixed.
 
@@ -55,5 +58,6 @@ This is the initial release.
 * ホーム記事一覧
 * カテゴリ記事一覧
 * タグ記事一覧
+* 検索結果一覧
 
 これらのフロントの一覧表示をカスタマイズするプラグインです。

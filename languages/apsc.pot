@@ -2,21 +2,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
 "POT-Creation-Date: 2013-04-02 14:11+0900\n"
-"PO-Revision-Date: 2013-04-11 23:56+0900\n"
+"PO-Revision-Date: 2013-07-02 15:21+0900\n"
 "Last-Translator: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
 
 msgid "Customize the display order of the list of Archive Posts."
+msgstr ""
+
+msgid "Home Archive Sort Customize"
 msgstr ""
 
 msgid "Category Archive Sort Customize"
 msgstr ""
 
 msgid "Tag Archive Sort Customize"
+msgstr ""
+
+msgid "Search Archive Sort Customize"
 msgstr ""
 
 msgid "Please set your favorite."
@@ -70,6 +78,6 @@ msgstr ""
 msgid "From small to many"
 msgstr ""
 
-msgid "Would initialize?"
+msgid "Reset all settings?"
 msgstr ""
 
