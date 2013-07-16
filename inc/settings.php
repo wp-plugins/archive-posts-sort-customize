@@ -66,7 +66,7 @@ $Data = $this->get_data( $this->SetArchive );
 
 			<form id="archive_posts_sort_customize_form" method="post" action="">
 				<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y">
-				<?php wp_nonce_field(); ?>
+				<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
 
 				<input type="hidden" name="set_sort" value="<?php echo $this->SetArchive; ?>" />
 				<div class="postbox">

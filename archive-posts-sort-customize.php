@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.2
+Version: 1.2.1
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_1
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -39,22 +39,23 @@ class APSC
 		$Site,
 		$AuthorUrl,
 		$ltd,
-		$ltd_do,
+		$ltd_p,
 		$Record,
 		$PageSlug,
+		$Nonces,
 		$SetArchive,
 		$UPFN,
 		$Msg;
 
 
 	function __construct() {
-		$this->Ver = '1.2';
+		$this->Ver = '1.2.1';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
 		$this->Site = 'http://gqevu6bsiz.chicappa.jp/';
 		$this->AuthorUrl = $this->Site;
 		$this->ltd = 'apsc';
-		$this->ltd_do = $this->ltd . '_plugin';
+		$this->ltd_p = $this->ltd . '_plugin';
 		$this->Record = array(
 			"home" => $this->ltd . '_home',
 			"tag" => $this->ltd . '_tag',
@@ -63,6 +64,7 @@ class APSC
 			"donate" => $this->ltd . '_donated',
 		);
 		$this->PageSlug = 'archive_posts_sort_customize';
+		$this->Nonces = array( "field" => $this->ltd . '_field' , "value" => $this->ltd . '_value' );
 		$this->SetArchive = 'home';
 		$this->UPFN = 'Y';
 		$this->DonateKey = 'd77aec9bc89d445fd54b4c988d090f03';
@@ -76,7 +78,7 @@ class APSC
 	function PluginSetup() {
 		// load text domain
 		load_plugin_textdomain( $this->ltd , false , basename( dirname( __FILE__ ) ) . '/languages' );
-		load_plugin_textdomain( $this->ltd_do , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->ltd_p , false , basename( dirname( __FILE__ ) ) . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
@@ -297,10 +299,10 @@ class APSC
 				$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
 				if( $this->DonateKey == $SubmitKey ) {
 					update_option( $this->ltd . '_donated' , $SubmitKey );
-					$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donation.' , $this->ltd_do ) . '</strong></p></div>';
+					$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donate.' , $this->ltd_p ) . '</strong></p></div>';
 				}
 
-			} elseif( !empty( $_POST["data"] ) ) {
+			} elseif( !empty( $_POST["data"] ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 
 				$Update = array();
 				foreach($_POST["data"] as $key => $val) {
@@ -322,9 +324,11 @@ class APSC
 
 	// Update Reset
 	function update_reset() {
-		$Record = $this->Record[strip_tags( $_POST["set_sort"] )];
-		delete_option( $Record );
-		$this->Msg .= '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+		if( check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
+			$Record = $this->Record[strip_tags( $_POST["set_sort"] )];
+			delete_option( $Record );
+			$this->Msg .= '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+		}
 	}
 
 
@@ -419,7 +423,7 @@ class APSC
 	function DisplayDonation() {
 		$donation = get_option( $this->ltd . '_donated' );
 		if( $this->DonateKey != $donation ) {
-			$this->Msg .= '<div class="error"><p><strong>' . __( 'Please consider a donation if you are satisfied with this plugin.' , $this->ltd_do ) . '</strong></p></div>';
+			$this->Msg .= '<div class="error"><p><strong>' . __( 'Please consider a donate if you are satisfied with this plugin.' , $this->ltd_p ) . '</strong></p></div>';
 		}
 	}
 
