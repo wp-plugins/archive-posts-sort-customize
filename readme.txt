@@ -1,10 +1,10 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_2_1
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_2_2
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.4.2
-Tested up to: 3.6 RC1
-Stable tag: 1.2.1
+Tested up to: 3.6
+Stable tag: 1.2.2
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
@@ -31,11 +31,15 @@ These lists to Customization is possible.
 
 == Screenshots ==
 
-1. Interface in setting
-2. While setting
-3. Kindness custom field input setting
+1. Settings Interface
+2. Configuration Example
+3. Sort support of Custom fields
 
 == Changelog ==
+
+= 1.2.2 =
+* Support for SSL.
+* Check to 3.6.
 
 = 1.2.1 =
 * Added a confirmation of Nonce field.

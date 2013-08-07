@@ -10,7 +10,7 @@ if( $donatedKey == $this->DonateKey ) :
 				<h3 style="background: #FFF2D0; border-color: #FFC426;"><span class="hndle"><?php _e( 'How may I help you?' , $this->ltd_p ); ?></span></h3>
 				<div class="inside">
 					<p style="float: right;">
-						<img src="http://www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=46" width="46" /><br />
+						<img src="<?php echo $this->Schema; ?>www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=46" width="46" /><br />
 						<a href="<?php echo $this->AuthorUrl; ?>contact-us/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">gqevu6bsiz</a>
 					</p>
 					<p><?php _e( 'I am good at Admin Screen Customize.' , $this->ltd_p ); ?></p>
@@ -44,7 +44,7 @@ if( $donatedKey == $this->DonateKey ) :
 						</ul>
 					</div>
 
-					<form id="donation_form" class="waum_form" method="post" action="">
+					<form id="donation_form" method="post" action="">
 						<h4 style="color: #FFF;"><?php _e( 'If you have already donated to.' , $this->ltd_p ); ?></h4>
 						<p style="color: #FFF;"><?php _e( 'Please enter the \'Donate delete key\' that have been described in the \'Line Break First and End download page\'.' , $this->ltd_p ); ?></p>
 						<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y" />
@@ -62,11 +62,11 @@ if( $donatedKey == $this->DonateKey ) :
 			<div class="stuffbox" id="aboutbox">
 				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd_p ); ?></span></h3>
 				<div class="inside">
-					<p><?php _e( 'Version check' , $this->ltd_p ); ?> : 3.4.2 - 3.6 RC1</p>
+					<p><?php _e( 'Version check' , $this->ltd_p ); ?> : 3.4.2 - 3.6</p>
 					<ul>
 						<li><a href="<?php echo $this->AuthorUrl; ?>?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd_p ); ?></a></li>
-						<li><a href="http://wordpress.org/support/plugin/archive-posts-sort-customize" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
-						<li><a href="http://wordpress.org/support/view/plugin-reviews/archive-posts-sort-customize" target="_blank"><?php _e( 'Reviews' , $this->ltd_p ); ?></a></li>
+						<li><a href="http://wordpress.org/support/plugin/<?php echo $this->PluginSlug; ?>" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
+						<li><a href="http://wordpress.org/support/view/plugin-reviews/<?php echo $this->PluginSlug; ?>" target="_blank"><?php _e( 'Reviews' , $this->ltd_p ); ?></a></li>
 						<li><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></li>
 						<li><a href="http://www.facebook.com/pages/Gqevu6bsiz/499584376749601" target="_blank">facebook</a></li>
 					</ul>
@@ -77,7 +77,7 @@ if( $donatedKey == $this->DonateKey ) :
 							<a href="<?php echo $this->AuthorUrl; ?>please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">Please translation.</a>
 						</p>
 					<?php endif; ?>
-					<p><?php echo sprintf( __( 'Do you have a proposal you want to improve? Please contact to %s if it is necessary.' , $this->ltd_p ) , '<a href="http://wordpress.org/support/plugin/archive-posts-sort-customize" target="_blank">' . __( 'Support Forums' ) . '</a>' ); ?></p>
+					<p><?php echo sprintf( __( 'Do you have a proposal you want to improve? Please contact to %s if it is necessary.' , $this->ltd_p ) , '<a href="http://wordpress.org/support/plugin/' . $this->PluginSlug . '" target="_blank">' . __( 'Support Forums' ) . '</a>' ); ?></p>
 				</div>
 			</div>
 

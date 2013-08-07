@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.2.1
+Version: 1.2.2
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_1
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_2
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -49,9 +49,10 @@ class APSC
 
 
 	function __construct() {
-		$this->Ver = '1.2.1';
+		$this->Ver = '1.2.2';
 		$this->Name = 'Archive Post Sort Customize';
-		$this->Dir = WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) . '/';
+		$this->Dir = plugin_dir_path( __FILE__ );
+		$this->Url = plugin_dir_url( __FILE__ );
 		$this->Site = 'http://gqevu6bsiz.chicappa.jp/';
 		$this->AuthorUrl = $this->Site;
 		$this->ltd = 'apsc';
@@ -64,7 +65,9 @@ class APSC
 			"donate" => $this->ltd . '_donated',
 		);
 		$this->PageSlug = 'archive_posts_sort_customize';
+		$this->PluginSlug = dirname( plugin_basename( __FILE__ ) );
 		$this->Nonces = array( "field" => $this->ltd . '_field' , "value" => $this->ltd . '_value' );
+		$this->Schema = is_ssl() ? 'https://' : 'http://';
 		$this->SetArchive = 'home';
 		$this->UPFN = 'Y';
 		$this->DonateKey = 'd77aec9bc89d445fd54b4c988d090f03';
@@ -77,8 +80,8 @@ class APSC
 	// PluginSetup
 	function PluginSetup() {
 		// load text domain
-		load_plugin_textdomain( $this->ltd , false , basename( dirname( __FILE__ ) ) . '/languages' );
-		load_plugin_textdomain( $this->ltd_p , false , basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( $this->ltd , false , $this->PluginSlug . '/languages' );
+		load_plugin_textdomain( $this->ltd_p , false , $this->PluginSlug . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
@@ -93,10 +96,10 @@ class APSC
 
 			$mofile = $this->TransFileCk();
 			if( $mofile == false ) {
-				$translation_link = '<a href="' . $this->AuthorUrl . 'please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">Please translation</a>'; 
+				$translation_link = '<a href="' . $this->AuthorUrl . 'please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">Please translate</a>'; 
 				array_unshift( $links, $translation_link );
 			}
-			$support_link = '<a href="http://wordpress.org/support/plugin/archive-posts-sort-customize" target="_blank">' . __( 'Support Forums' ) . '</a>';
+			$support_link = '<a href="http://wordpress.org/support/plugin/' . $this->PluginSlug . '" target="_blank">' . __( 'Support Forums' ) . '</a>';
 			array_unshift( $links, $support_link );
 			array_unshift( $links, '<a href="' . admin_url( 'admin.php?page=' . $this->PageSlug ) . '">' . __('Settings') . '</a>' );
 
@@ -108,15 +111,15 @@ class APSC
 	function admin_menu() {
 		add_menu_page( __( 'Home Archive Sort Customize' , $this->ltd ) , __( 'Archive Posts Sort Customize' , $this->ltd ) , 'administrator', $this->PageSlug , array( $this , 'setting_home') );
 
-		add_submenu_page( $this->PageSlug , __( 'Category Archive Sort Customize' , $this->ltd ) , __( 'Category Archive' , $this->ltd ) , 'administrator' , $this->Record["cat"] , array( $this , 'setting_cat' ) );
-		add_submenu_page( $this->PageSlug , __( 'Tag Archive Sort Customize' , $this->ltd ) , __( 'Tag Archive' , $this->ltd ) , 'administrator' , $this->Record["tag"] , array( $this , 'setting_tag' ) );
-		add_submenu_page( $this->PageSlug , __( 'Search Archive Sort Customize' , $this->ltd ) , __( 'Search Archive' , $this->ltd ) , 'administrator' , $this->Record["search"] , array( $this , 'setting_search' ) );
+		add_submenu_page( $this->PageSlug , __( 'Category Archive Sort Customize' , $this->ltd ) , __( 'Category' ) , 'administrator' , $this->Record["cat"] , array( $this , 'setting_cat' ) );
+		add_submenu_page( $this->PageSlug , __( 'Tag Archive Sort Customize' , $this->ltd ) , __( 'Tag' ) , 'administrator' , $this->Record["tag"] , array( $this , 'setting_tag' ) );
+		add_submenu_page( $this->PageSlug , __( 'Search Archive Sort Customize' , $this->ltd ) , __( 'Search' ) , 'administrator' , $this->Record["search"] , array( $this , 'setting_search' ) );
 	}
 
 	// Translation File Check
 	function TransFileCk() {
 		$file = false;
-		$moFile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $this->ltd . '-' . get_locale() . '.mo';
+		$moFile = $this->Dir . 'languages/' . $this->ltd . '-' . get_locale() . '.mo';
 		if( file_exists( $moFile ) ) {
 			$file = true;
 		}
@@ -415,7 +418,8 @@ class APSC
 
 	// FilterStart
 	function layout_footer( $text ) {
-		$text = '<img src="http://www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=18" width="18" /> Plugin developer : <a href="' . $this->AuthorUrl . '?utm_source=use_plugin&utm_medium=footer&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">gqevu6bsiz</a>';
+		$text = '<img src="' . $this->Schema . 'www.gravatar.com/avatar/7e05137c5a859aa987a809190b979ed4?s=18" width="18" />
+		Plugin developer : <a href="' . $this->AuthorUrl . '?utm_source=use_plugin&utm_medium=footer&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">gqevu6bsiz</a>';
 		return $text;
 	}
 
