@@ -1,10 +1,10 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_2_2
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_2_3
 Tags: home, category, post, posts, tag, archive, sort
-Requires at least: 3.4.2
+Requires at least: 3.5.2
 Tested up to: 3.6
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
@@ -36,6 +36,10 @@ These lists to Customization is possible.
 3. Sort support of Custom fields
 
 == Changelog ==
+
+= 1.2.3 =
+* Added: Last modified of Sort target(orderby).
+* Updated: Translations.
 
 = 1.2.2 =
 * Support for SSL.

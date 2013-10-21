@@ -1,83 +1,237 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
-"POT-Creation-Date: 2013-04-02 14:11+0900\n"
-"PO-Revision-Date: 2013-07-02 15:21+0900\n"
-"Last-Translator: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
-"Language-Team: Gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-21 10:43+0900\n"
+"PO-Revision-Date: 2013-10-21 10:56+0900\n"
+"Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
+"Language-Team: gqevu6bsiz@gmail.com <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: .\n"
 
+#: archive-posts-sort-customize.php:4
 msgid "Customize the display order of the list of Archive Posts."
 msgstr "アーカイブの記事一覧の表示順をカスタマイズします。"
 
+#: archive-posts-sort-customize.php:109
+#: inc/settings.php:6
 msgid "Home Archive Sort Customize"
 msgstr "ホーム記事一覧ソートカスタマイズ"
 
+#: archive-posts-sort-customize.php:109
+msgid "Archive Posts Sort Customize"
+msgstr ""
+
+#: archive-posts-sort-customize.php:111
+#: inc/settings.php:8
 msgid "Category Archive Sort Customize"
 msgstr "カテゴリー記事一覧ソートカスタマイズ"
 
+#: archive-posts-sort-customize.php:112
+#: inc/settings.php:10
 msgid "Tag Archive Sort Customize"
 msgstr "タグ記事一覧ソートカスタマイズ"
 
+#: archive-posts-sort-customize.php:113
+#: inc/settings.php:12
 msgid "Search Archive Sort Customize"
 msgstr "検索結果一覧ソートカスタマイズ"
 
-msgid "Please set your favorite."
-msgstr "お好みの設定をしてください。"
-
-msgid "Number of posts per page"
-msgstr "1ページあたりの投稿表示数"
-
+#: archive-posts-sort-customize.php:179
+#: archive-posts-sort-customize.php:215
+#: archive-posts-sort-customize.php:251
+#, php-format
 msgid "The default is <strong>%s</strong>."
 msgstr "デフォルト設定は <strong>%s</strong> です。"
 
-msgid "Sort settings"
-msgstr "ソート設定"
-
-msgid "View all posts"
-msgstr "全ての記事を表示"
-
+#: archive-posts-sort-customize.php:179
+#: archive-posts-sort-customize.php:181
 msgid "Follow Reading Setting"
 msgstr "表示設定に従う"
 
-msgid "Current number of Reading Setting"
-msgstr "現在の表示設定数"
+#: archive-posts-sort-customize.php:181
+msgid "View all posts"
+msgstr "全ての記事を表示"
 
+#: archive-posts-sort-customize.php:181
 msgid "Set the number of posts"
 msgstr "記事数を設定"
 
-msgid "Sort target"
-msgstr "ソート対象"
+#: archive-posts-sort-customize.php:193
+msgid "Current number of Reading Setting"
+msgstr "現在の表示設定数"
 
+#: archive-posts-sort-customize.php:217
 msgid "Comments Count"
 msgstr "コメント数"
 
+#: archive-posts-sort-customize.php:232
 msgid "Please enter the name of the custom field you want to sort."
 msgstr "ソート対象のカスタムフィールド名を入力してください。"
 
+#: archive-posts-sort-customize.php:237
 msgid "Custom Fields Name"
 msgstr "カスタムフィールド名"
 
+#: archive-posts-sort-customize.php:240
 msgid "Click here, please look for the required custom fields if you do not know the name of the custom field."
 msgstr "カスタムフィールド名が分からない場合こちらをクリックして対象のカスタムフィールド名を探してみてください。"
 
+#: archive-posts-sort-customize.php:265
 msgid "From new to old"
 msgstr "新しいものから古いもの"
 
-msgid "From old to new"
-msgstr "古いものから新しいもの"
-
+#: archive-posts-sort-customize.php:265
 msgid "From many to small"
 msgstr "多いものから少ないもの"
 
+#: archive-posts-sort-customize.php:266
+msgid "From old to new"
+msgstr "古いものから新しいもの"
+
+#: archive-posts-sort-customize.php:266
 msgid "From small to many"
 msgstr "少ないものから多いもの"
 
+#: archive-posts-sort-customize.php:302
+#: inc/donation.php:5
+msgid "Thank you for your donate."
+msgstr "寄付いただきありがとうございます。"
+
+#: archive-posts-sort-customize.php:427
+msgid "Please consider a donate if you are satisfied with this plugin."
+msgstr "このプラグインに満足できたら寄付のご検討を宜しくお願いします。"
+
+#: inc/donation.php:10
+msgid "How may I help you?"
+msgstr "何かお手伝いできることはありますか？"
+
+#: inc/donation.php:16
+msgid "I am good at Admin Screen Customize."
+msgstr "私は管理画面のカスタマイズを得意とします。"
+
+#: inc/donation.php:17
+msgid "Please consider the request to me if it is good."
+msgstr "宜しければご検討ください。"
+
+#: inc/donation.php:19
+msgid "Example Customize"
+msgstr "カスタマイズ例"
+
+#: inc/donation.php:20
+msgid "Contact me"
+msgstr "お問い合わせ"
+
+#: inc/donation.php:26
+msgid "Please donate."
+msgstr "寄付のお願い"
+
+#: inc/donation.php:27
+msgid "You are contented with this plugin?<br />By the laws of Japan, Japan's new paypal user can not make a donate button.<br />So i would like you to buy this plugin as the replacement for the donate."
+msgstr "このプラグインを使って満足できましたか？<br />日本の法律では、日本の新PayPalユーザーは寄付ボタンを作成することはできません。<br />なので寄付の代わりとしてこのプラグインを購入して欲しいです。"
+
+#: inc/donation.php:34
+msgid "Features"
+msgstr "機能について"
+
+#: inc/donation.php:35
+msgid "Line Break First and End plugin is In the visual editor TinyMCE, It is a plugin that will help when you will not be able to enter a line break."
+msgstr "Line Break First and Endプラグインは、TinyMCEのビジュアルエディタで、改行を入力することが出来なくなった時に便利なプラグインです。"
+
+#: inc/donation.php:38
+msgid "The primary use of donations"
+msgstr "寄付の主な使用目的"
+
+#: inc/donation.php:40
+msgid "Liquidation of time and value"
+msgstr "時間と価値の清算"
+
+#: inc/donation.php:41
+msgid "Additional suggestions feature"
+msgstr "機能提案の追加"
+
+#: inc/donation.php:42
+msgid "Maintain motivation"
+msgstr "モチベーション維持"
+
+#: inc/donation.php:43
+msgid "Ensure time as the father of Sunday"
+msgstr "日曜日の父親としての時間確保"
+
+#: inc/donation.php:48
+msgid "If you have already donated to."
+msgstr "寄付済みの方へ。"
+
+#: inc/donation.php:49
+msgid "Please enter the 'Donate delete key' that have been described in the 'Line Break First and End download page'."
+msgstr "'Line Break First and End download page' ダウンロードページに記載されていた寄付削除キーを入力して、寄付メッセージを削除できます。"
+
+#: inc/donation.php:52
+msgid "Donate delete key"
+msgstr "寄付メッセージ削除キー"
+
+#: inc/donation.php:63
+msgid "About plugin"
+msgstr "プラグインについて"
+
+#: inc/donation.php:65
+msgid "Version checked"
+msgstr "動作確認済み"
+
+#: inc/donation.php:67
+msgid "Developer's site"
+msgstr "開発者のサイト"
+
+#: inc/donation.php:69
+msgid "Reviews"
+msgstr "レビュー"
+
+#: inc/donation.php:80
+#, php-format
+msgid "Do you have a proposal you want to improve? Please contact to %s if it is necessary."
+msgstr "このプラグインについて何か提案がありますか？あれば %s までお問い合わせください。"
+
+#: inc/donation.php:85
+msgid "Useful plugins"
+msgstr "便利なプラグイン"
+
+#: inc/donation.php:88
+msgid "Customize a variety of screen management."
+msgstr "管理画面の様々なカスタマイズ"
+
+#: inc/donation.php:90
+msgid "Customize the list of the post and page. custom post type page, too. You can customize the column display items freely."
+msgstr "投稿と固定ページ一覧をカスタマイズします。カスタム投稿タイプも。カラム一覧を自由にカスタマイズできます。"
+
+#: inc/donation.php:92
+msgid "The plugin that allows you to add the value of the options. Option value that you have created, can be used in addition to the template tag, Short code can be used in the body of the article."
+msgstr "オプション値作成プラグインです。作成したオプション値は、ショートコードとして記事に、テンプレートタグとしても使用できます。"
+
+#: inc/settings.php:57
+msgid "Please set your favorite."
+msgstr "お好みの設定をしてください。"
+
+#: inc/settings.php:74
+msgid "Sort settings"
+msgstr "ソート設定"
+
+#: inc/settings.php:83
+msgid "Number of posts per page"
+msgstr "1ページあたりの投稿表示数"
+
+#: inc/settings.php:99
+msgid "Sort target"
+msgstr "ソート対象"
+
+#: inc/settings.php:136
 msgid "Reset all settings?"
 msgstr "リセットしますか?"
 

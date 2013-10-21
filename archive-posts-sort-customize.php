@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.2.2
+Version: 1.2.3
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_2
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_3
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -39,7 +39,6 @@ class APSC
 		$Site,
 		$AuthorUrl,
 		$ltd,
-		$ltd_p,
 		$Record,
 		$PageSlug,
 		$Nonces,
@@ -49,14 +48,13 @@ class APSC
 
 
 	function __construct() {
-		$this->Ver = '1.2.2';
+		$this->Ver = '1.2.3';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = plugin_dir_path( __FILE__ );
 		$this->Url = plugin_dir_url( __FILE__ );
 		$this->Site = 'http://gqevu6bsiz.chicappa.jp/';
 		$this->AuthorUrl = $this->Site;
 		$this->ltd = 'apsc';
-		$this->ltd_p = $this->ltd . '_plugin';
 		$this->Record = array(
 			"home" => $this->ltd . '_home',
 			"tag" => $this->ltd . '_tag',
@@ -81,7 +79,6 @@ class APSC
 	function PluginSetup() {
 		// load text domain
 		load_plugin_textdomain( $this->ltd , false , $this->PluginSlug . '/languages' );
-		load_plugin_textdomain( $this->ltd_p , false , $this->PluginSlug . '/languages' );
 
 		// plugin links
 		add_filter( 'plugin_action_links' , array( $this , 'plugin_action_links' ) , 10 , 2 );
@@ -217,7 +214,7 @@ class APSC
 
 		echo '<p>' . sprintf( __( 'The default is <strong>%s</strong>.' , $this->ltd ) , __( 'Date' ) ) . '</p>';
 
-		$Sort = array( "date" => __( 'Date' ) , "title" => __( 'Title' ) , "author" => __( 'Author' ) , "comment_count" => __( 'Comments Count' , $this->ltd ) , "id" => 'ID' , "custom_fields" => __( 'Custom Fields' ) );
+		$Sort = array( "date" => __( 'Date' ) , "title" => __( 'Title' ) , "author" => __( 'Author' ) , "comment_count" => __( 'Comments Count' , $this->ltd ) , "id" => 'ID' , "modified" => __( 'Last Modified' ) , "custom_fields" => __( 'Custom Fields' ) );
 
 		echo '<div class="orderby">';
 		echo '<select name="data[orderby]">';
@@ -302,7 +299,7 @@ class APSC
 				$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
 				if( $this->DonateKey == $SubmitKey ) {
 					update_option( $this->ltd . '_donated' , $SubmitKey );
-					$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donate.' , $this->ltd_p ) . '</strong></p></div>';
+					$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donate.' , $this->ltd ) . '</strong></p></div>';
 				}
 
 			} elseif( !empty( $_POST["data"] ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
@@ -427,7 +424,7 @@ class APSC
 	function DisplayDonation() {
 		$donation = get_option( $this->ltd . '_donated' );
 		if( $this->DonateKey != $donation ) {
-			$this->Msg .= '<div class="error"><p><strong>' . __( 'Please consider a donate if you are satisfied with this plugin.' , $this->ltd_p ) . '</strong></p></div>';
+			$this->Msg .= '<div class="error"><p><strong>' . __( 'Please consider a donate if you are satisfied with this plugin.' , $this->ltd ) . '</strong></p></div>';
 		}
 	}
 
