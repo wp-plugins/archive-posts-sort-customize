@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-21 10:43+0900\n"
-"PO-Revision-Date: 2013-10-21 10:43+0900\n"
+"POT-Creation-Date: 2013-12-10 18:08+0900\n"
+"PO-Revision-Date: 2013-12-10 18:08+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,92 +18,104 @@ msgstr ""
 msgid "Customize the display order of the list of Archive Posts."
 msgstr ""
 
-#: archive-posts-sort-customize.php:109
-#: inc/settings.php:6
-msgid "Home Archive Sort Customize"
+#: archive-posts-sort-customize.php:114
+#: archive-posts-sort-customize.php:116
+#: archive-posts-sort-customize.php:117
+#: archive-posts-sort-customize.php:118
+#: archive-posts-sort-customize.php:119
+#: archive-posts-sort-customize.php:126
+#: archive-posts-sort-customize.php:136
+#: archive-posts-sort-customize.php:146
+#: archive-posts-sort-customize.php:156
+#: archive-posts-sort-customize.php:166
+#, php-format
+msgid "%1$s %2$s for %3$s %4$s"
 msgstr ""
 
-#: archive-posts-sort-customize.php:109
+#: archive-posts-sort-customize.php:114
+#: archive-posts-sort-customize.php:116
+#: archive-posts-sort-customize.php:117
+#: archive-posts-sort-customize.php:118
+#: archive-posts-sort-customize.php:119
+#: archive-posts-sort-customize.php:126
+#: archive-posts-sort-customize.php:136
+#: archive-posts-sort-customize.php:146
+#: archive-posts-sort-customize.php:156
+#: archive-posts-sort-customize.php:166
+msgid "Sort"
+msgstr ""
+
+#: archive-posts-sort-customize.php:114
 msgid "Archive Posts Sort Customize"
 msgstr ""
 
-#: archive-posts-sort-customize.php:111
-#: inc/settings.php:8
-msgid "Category Archive Sort Customize"
+#: archive-posts-sort-customize.php:119
+#: archive-posts-sort-customize.php:166
+msgid "Monthly"
 msgstr ""
 
-#: archive-posts-sort-customize.php:112
-#: inc/settings.php:10
-msgid "Tag Archive Sort Customize"
-msgstr ""
-
-#: archive-posts-sort-customize.php:113
-#: inc/settings.php:12
-msgid "Search Archive Sort Customize"
-msgstr ""
-
-#: archive-posts-sort-customize.php:179
-#: archive-posts-sort-customize.php:215
-#: archive-posts-sort-customize.php:251
+#: archive-posts-sort-customize.php:193
+#: archive-posts-sort-customize.php:229
+#: archive-posts-sort-customize.php:265
 #, php-format
 msgid "The default is <strong>%s</strong>."
 msgstr ""
 
-#: archive-posts-sort-customize.php:179
-#: archive-posts-sort-customize.php:181
+#: archive-posts-sort-customize.php:193
+#: archive-posts-sort-customize.php:195
 msgid "Follow Reading Setting"
 msgstr ""
 
-#: archive-posts-sort-customize.php:181
+#: archive-posts-sort-customize.php:195
 msgid "View all posts"
 msgstr ""
 
-#: archive-posts-sort-customize.php:181
+#: archive-posts-sort-customize.php:195
 msgid "Set the number of posts"
 msgstr ""
 
-#: archive-posts-sort-customize.php:193
+#: archive-posts-sort-customize.php:207
 msgid "Current number of Reading Setting"
 msgstr ""
 
-#: archive-posts-sort-customize.php:217
+#: archive-posts-sort-customize.php:231
 msgid "Comments Count"
 msgstr ""
 
-#: archive-posts-sort-customize.php:232
+#: archive-posts-sort-customize.php:246
 msgid "Please enter the name of the custom field you want to sort."
 msgstr ""
 
-#: archive-posts-sort-customize.php:237
+#: archive-posts-sort-customize.php:251
 msgid "Custom Fields Name"
 msgstr ""
 
-#: archive-posts-sort-customize.php:240
+#: archive-posts-sort-customize.php:254
 msgid "Click here, please look for the required custom fields if you do not know the name of the custom field."
 msgstr ""
 
-#: archive-posts-sort-customize.php:265
+#: archive-posts-sort-customize.php:279
 msgid "From new to old"
 msgstr ""
 
-#: archive-posts-sort-customize.php:265
+#: archive-posts-sort-customize.php:279
 msgid "From many to small"
 msgstr ""
 
-#: archive-posts-sort-customize.php:266
+#: archive-posts-sort-customize.php:280
 msgid "From old to new"
 msgstr ""
 
-#: archive-posts-sort-customize.php:266
+#: archive-posts-sort-customize.php:280
 msgid "From small to many"
 msgstr ""
 
-#: archive-posts-sort-customize.php:302
+#: archive-posts-sort-customize.php:486
 #: inc/donation.php:5
-msgid "Thank you for your donate."
+msgid "Thank you for your donation."
 msgstr ""
 
-#: archive-posts-sort-customize.php:427
+#: archive-posts-sort-customize.php:502
 msgid "Please consider a donate if you are satisfied with this plugin."
 msgstr ""
 
@@ -191,44 +203,48 @@ msgstr ""
 msgid "Reviews"
 msgstr ""
 
-#: inc/donation.php:80
+#: inc/donation.php:77
 #, php-format
 msgid "Do you have a proposal you want to improve? Please contact to %s if it is necessary."
 msgstr ""
 
-#: inc/donation.php:85
+#: inc/donation.php:82
 msgid "Useful plugins"
 msgstr ""
 
-#: inc/donation.php:88
+#: inc/donation.php:85
 msgid "Customize a variety of screen management."
 msgstr ""
 
-#: inc/donation.php:90
+#: inc/donation.php:87
 msgid "Customize the list of the post and page. custom post type page, too. You can customize the column display items freely."
 msgstr ""
 
-#: inc/donation.php:92
+#: inc/donation.php:89
 msgid "The plugin that allows you to add the value of the options. Option value that you have created, can be used in addition to the template tag, Short code can be used in the body of the article."
 msgstr ""
 
-#: inc/settings.php:57
+#: inc/settings.php:37
 msgid "Please set your favorite."
 msgstr ""
 
-#: inc/settings.php:74
+#: inc/settings.php:54
 msgid "Sort settings"
 msgstr ""
 
-#: inc/settings.php:83
+#: inc/settings.php:63
 msgid "Number of posts per page"
 msgstr ""
 
-#: inc/settings.php:99
+#: inc/settings.php:79
 msgid "Sort target"
 msgstr ""
 
-#: inc/settings.php:136
+#: inc/settings.php:116
 msgid "Reset all settings?"
+msgstr ""
+
+#: inc/settings.php:117
+msgid "Reset settings"
 msgstr ""
 

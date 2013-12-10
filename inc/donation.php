@@ -2,7 +2,7 @@
 $donatedKey = get_option( $this->ltd . '_donated' );
 if( $donatedKey == $this->DonateKey ) : 
 ?>
-			<span class="description"><?php _e( 'Thank you for your donate.' , $this->ltd ); ?></span>
+			<span class="description"><?php _e( 'Thank you for your donation.' , $this->ltd ); ?></span>
 
 <?php else: ?>
 
@@ -44,11 +44,11 @@ if( $donatedKey == $this->DonateKey ) :
 						</ul>
 					</div>
 
-					<form id="donation_form" method="post" action="">
+					<form id="donation_form" method="post" action="<?php echo remove_query_arg( $this->MsgQ ); ?>">
 						<h4 style="color: #FFF;"><?php _e( 'If you have already donated to.' , $this->ltd ); ?></h4>
 						<p style="color: #FFF;"><?php _e( 'Please enter the \'Donate delete key\' that have been described in the \'Line Break First and End download page\'.' , $this->ltd ); ?></p>
 						<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y" />
-						<?php wp_nonce_field(); ?>
+						<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
 						<label for="donate_key"><span style="color: #FFF; "><?php _e( 'Donate delete key' , $this->ltd ); ?></span></label>
 						<input type="text" name="donate_key" id="donate_key" value="" class="small-text" />
 						<input type="submit" class="button-secondary" name="update" value="<?php _e( 'Submit' ); ?>" />
@@ -62,7 +62,7 @@ if( $donatedKey == $this->DonateKey ) :
 			<div class="stuffbox" id="aboutbox">
 				<h3><span class="hndle"><?php _e( 'About plugin' , $this->ltd ); ?></span></h3>
 				<div class="inside">
-					<p><?php _e( 'Version checked' , $this->ltd ); ?> : 3.4.2 - 3.6</p>
+					<p><?php _e( 'Version checked' , $this->ltd ); ?> : 3.6.1 - 3.8-RC1</p>
 					<ul>
 						<li><a href="<?php echo $this->AuthorUrl; ?>?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $this->ltd ); ?></a></li>
 						<li><a href="http://wordpress.org/support/plugin/<?php echo $this->PluginSlug; ?>" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
@@ -70,13 +70,10 @@ if( $donatedKey == $this->DonateKey ) :
 						<li><a href="https://twitter.com/gqevu6bsiz" target="_blank">twitter</a></li>
 						<li><a href="http://www.facebook.com/pages/Gqevu6bsiz/499584376749601" target="_blank">facebook</a></li>
 					</ul>
-					<?php $mofile = $this->TransFileCk(); ?>
-					<?php if( empty( $mofile ) ) : ?>
-						<p>
-							I am looking for a translator for this plugin.<br />
-							<a href="<?php echo $this->AuthorUrl; ?>please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">Please translation.</a>
-						</p>
-					<?php endif; ?>
+					<p>
+						I am looking for a translator for this plugin.<br />
+						<a href="<?php echo $this->AuthorUrl; ?>please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=<?php echo $this->ltd; ?>&utm_campaign=<?php echo str_replace( '.' , '_' , $this->Ver ); ?>" target="_blank">Please translation.</a>
+					</p>
 					<p><?php echo sprintf( __( 'Do you have a proposal you want to improve? Please contact to %s if it is necessary.' , $this->ltd ) , '<a href="http://wordpress.org/support/plugin/' . $this->PluginSlug . '" target="_blank">' . __( 'Support Forums' ) . '</a>' ); ?></p>
 				</div>
 			</div>

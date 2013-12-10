@@ -1,18 +1,5 @@
 <?php
 
-$PageTitle = '';
-
-if( $this->SetArchive == 'home' ) {
-	$PageTitle = __( 'Home Archive Sort Customize' , $this->ltd );
-} elseif( $this->SetArchive == 'cat' ) {
-	$PageTitle = __( 'Category Archive Sort Customize' , $this->ltd );
-} elseif( $this->SetArchive == 'tag' ) {
-	$PageTitle = __( 'Tag Archive Sort Customize' , $this->ltd );
-} elseif( $this->SetArchive == 'search' ) {
-	$PageTitle = __( 'Search Archive Sort Customize' , $this->ltd );
-}
-
-
 $ViewLink = '';
 
 if( $this->SetArchive == 'home' ) {
@@ -20,24 +7,17 @@ if( $this->SetArchive == 'home' ) {
 } elseif( $this->SetArchive == 'cat' ) {
 	$Category = get_categories( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) );
 	if( !empty( $Category ) ) {
-		$ViewLink = array( get_category_link( $Category[0]->cat_ID ) , __( 'Category' ) );
+		$ViewLink = array( get_category_link( $Category[0]->cat_ID ) , __( 'Categories' ) );
 	}
 } elseif( $this->SetArchive == 'tag' ) {
 	$Tag = get_tags( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) );
 	if( !empty( $Tag ) ) {
-		$ViewLink = array( get_tag_link( $Tag[0]->term_id ) , __( 'Tag' ) );
+		$ViewLink = array( get_tag_link( $Tag[0]->term_id ) , __( 'Tags' ) );
 	}
 } elseif( $this->SetArchive == 'search' ) {
 	$ViewLink = array( get_search_link( 'Hello' ) , __( 'Search' ) );
 }
 
-
-
-if( !empty( $_POST["reset"] ) ) {
-	$this->update_reset();
-} elseif( !empty( $_POST["update"] ) ) {
-	$this->update();
-}
 
 
 // include js css
@@ -52,7 +32,7 @@ $Data = $this->get_data( $this->SetArchive );
 
 <div class="wrap">
 	<div class="icon32" id="icon-options-general"></div>
-	<h2><?php echo $PageTitle; ?></h2>
+	<h2><?php echo $this->SetTitle; ?></h2>
 	<?php echo $this->Msg; ?>
 	<p><?php _e( 'Please set your favorite.' , $this->ltd ); ?></p>
 	
@@ -64,11 +44,11 @@ $Data = $this->get_data( $this->SetArchive );
 
 		<div id="postbox-container-1" class="postbox-container">
 
-			<form id="archive_posts_sort_customize_form" method="post" action="">
+			<form id="archive_posts_sort_customize_form" method="post" action="<?php echo remove_query_arg( $this->MsgQ ); ?>">
 				<input type="hidden" name="<?php echo $this->UPFN; ?>" value="Y">
 				<?php wp_nonce_field( $this->Nonces["value"] , $this->Nonces["field"] ); ?>
+				<input type="hidden" name="record_field" value="<?php echo $this->SetArchive; ?>" />
 
-				<input type="hidden" name="set_sort" value="<?php echo $this->SetArchive; ?>" />
 				<div class="postbox">
 
 					<h3><?php _e( 'Sort settings' , $this->ltd ); ?></h3>
@@ -134,7 +114,7 @@ $Data = $this->get_data( $this->SetArchive );
 
 				<p class="submit reset">
 					<span class="description"><?php _e( 'Reset all settings?' , $this->ltd ); ?></span>
-					<input type="submit" class="button-secondary" name="reset" value="<?php _e( 'Reset' ); ?>" />
+					<input type="submit" class="button-secondary" name="reset" value="<?php _e( 'Reset settings' , $this->ltd ); ?>" />
 				</p>
 
 			</form>

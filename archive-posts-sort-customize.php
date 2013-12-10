@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.2.3
+Version: 1.2.4
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_3
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_4
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -36,19 +36,24 @@ class APSC
 	var $Ver,
 		$Name,
 		$Dir,
+		$Url,
 		$Site,
 		$AuthorUrl,
 		$ltd,
 		$Record,
 		$PageSlug,
+		$PluginSlug,
 		$Nonces,
+		$Schema,
 		$SetArchive,
+		$SetTitle,
 		$UPFN,
+		$MsgQ,
 		$Msg;
 
 
 	function __construct() {
-		$this->Ver = '1.2.3';
+		$this->Ver = '1.2.4';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = plugin_dir_path( __FILE__ );
 		$this->Url = plugin_dir_url( __FILE__ );
@@ -60,6 +65,7 @@ class APSC
 			"tag" => $this->ltd . '_tag',
 			"cat" => $this->ltd . '_cat',
 			"search" => $this->ltd . '_search',
+			"monthly" => $this->ltd . '_monthly',
 			"donate" => $this->ltd . '_donated',
 		);
 		$this->PageSlug = 'archive_posts_sort_customize';
@@ -67,8 +73,11 @@ class APSC
 		$this->Nonces = array( "field" => $this->ltd . '_field' , "value" => $this->ltd . '_value' );
 		$this->Schema = is_ssl() ? 'https://' : 'http://';
 		$this->SetArchive = 'home';
+		$this->SetTitle = '';
+		
 		$this->UPFN = 'Y';
 		$this->DonateKey = 'd77aec9bc89d445fd54b4c988d090f03';
+		$this->MsgQ = $this->ltd . '_msg';
 		$this->Msg = '';
 
 		$this->PluginSetup();
@@ -85,48 +94,37 @@ class APSC
 
 		// add menu
 		add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+
+		// data update
+		add_action( 'admin_init' , array( $this , 'dataUpdate') );
 	}
 
 	// PluginSetup
 	function plugin_action_links( $links , $file ) {
 		if( plugin_basename(__FILE__) == $file ) {
-
-			$mofile = $this->TransFileCk();
-			if( $mofile == false ) {
-				$translation_link = '<a href="' . $this->AuthorUrl . 'please-translation/?utm_source=use_plugin&utm_medium=side&utm_content=' . $this->ltd . '&utm_campaign=' . str_replace( '.' , '_' , $this->Ver ) . '" target="_blank">Please translate</a>'; 
-				array_unshift( $links, $translation_link );
-			}
+			$link = '<a href="' . self_admin_url( 'admin.php?page=' . $this->PageSlug ) . '">' . __( 'Settings' ) . '</a>';
 			$support_link = '<a href="http://wordpress.org/support/plugin/' . $this->PluginSlug . '" target="_blank">' . __( 'Support Forums' ) . '</a>';
-			array_unshift( $links, $support_link );
-			array_unshift( $links, '<a href="' . admin_url( 'admin.php?page=' . $this->PageSlug ) . '">' . __('Settings') . '</a>' );
-
+			array_unshift( $links, $link , $support_link  );
 		}
 		return $links;
 	}
 
 	// PluginSetup
 	function admin_menu() {
-		add_menu_page( __( 'Home Archive Sort Customize' , $this->ltd ) , __( 'Archive Posts Sort Customize' , $this->ltd ) , 'administrator', $this->PageSlug , array( $this , 'setting_home') );
+		add_menu_page( sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Home' ) , __( 'Archives' ) ) , __( 'Archive Posts Sort Customize' , $this->ltd ) , 'administrator', $this->PageSlug , array( $this , 'setting_home') );
 
-		add_submenu_page( $this->PageSlug , __( 'Category Archive Sort Customize' , $this->ltd ) , __( 'Category' ) , 'administrator' , $this->Record["cat"] , array( $this , 'setting_cat' ) );
-		add_submenu_page( $this->PageSlug , __( 'Tag Archive Sort Customize' , $this->ltd ) , __( 'Tag' ) , 'administrator' , $this->Record["tag"] , array( $this , 'setting_tag' ) );
-		add_submenu_page( $this->PageSlug , __( 'Search Archive Sort Customize' , $this->ltd ) , __( 'Search' ) , 'administrator' , $this->Record["search"] , array( $this , 'setting_search' ) );
-	}
-
-	// Translation File Check
-	function TransFileCk() {
-		$file = false;
-		$moFile = $this->Dir . 'languages/' . $this->ltd . '-' . get_locale() . '.mo';
-		if( file_exists( $moFile ) ) {
-			$file = true;
-		}
-		return $file;
+		add_submenu_page( $this->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Categories' ) , __( 'Archives' ) ) , __( 'Categories' ) , 'administrator' , $this->Record["cat"] , array( $this , 'setting_cat' ) );
+		add_submenu_page( $this->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Tags' ) , __( 'Archives' ) ) , __( 'Tags' ) , 'administrator' , $this->Record["tag"] , array( $this , 'setting_tag' ) );
+		add_submenu_page( $this->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Search' ) , __( 'Archives' ) ) , __( 'Search' ) , 'administrator' , $this->Record["search"] , array( $this , 'setting_search' ) );
+		add_submenu_page( $this->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Monthly' , $this->ltd ) , __( 'Archives' ) ) , sprintf( '%1$s ( %2$s )' , __( 'Archives' ) , __( 'Monthly' , $this->ltd ) ) , 'administrator' , $this->Record["monthly"] , array( $this , 'setting_monthly' ) );
 	}
 
 
 
 	// SettingPage
 	function setting_home() {
+		$this->SetTitle = sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Home' ) , __( 'Archives' ) );
+		$this->display_msg();
 		add_filter( 'admin_footer_text' , array( $this , 'layout_footer' ) );
 		$this->DisplayDonation();
 		include_once 'inc/settings.php';
@@ -135,6 +133,8 @@ class APSC
 	// SettingPage
 	function setting_cat() {
 		$this->SetArchive = 'cat';
+		$this->SetTitle = sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Categories' ) , __( 'Archives' ) );
+		$this->display_msg();
 		add_filter( 'admin_footer_text' , array( $this , 'layout_footer' ) );
 		$this->DisplayDonation();
 		include_once 'inc/settings.php';
@@ -143,6 +143,8 @@ class APSC
 	// SettingPage
 	function setting_tag() {
 		$this->SetArchive = 'tag';
+		$this->SetTitle = sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Tags' ) , __( 'Archives' ) );
+		$this->display_msg();
 		add_filter( 'admin_footer_text' , array( $this , 'layout_footer' ) );
 		$this->DisplayDonation();
 		include_once 'inc/settings.php';
@@ -151,6 +153,18 @@ class APSC
 	// SettingPage
 	function setting_search() {
 		$this->SetArchive = 'search';
+		$this->SetTitle = sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Search' ) , __( 'Archives' ) );
+		$this->display_msg();
+		add_filter( 'admin_footer_text' , array( $this , 'layout_footer' ) );
+		$this->DisplayDonation();
+		include_once 'inc/settings.php';
+	}
+
+	// SettingPage
+	function setting_monthly() {
+		$this->SetArchive = 'monthly';
+		$this->SetTitle = sprintf( __( '%1$s %2$s for %3$s %4$s' , $this->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $this->ltd ) , __( 'Monthly' , $this->ltd ) , __( 'Archives' ) );
+		$this->display_msg();
 		add_filter( 'admin_footer_text' , array( $this , 'layout_footer' ) );
 		$this->DisplayDonation();
 		include_once 'inc/settings.php';
@@ -280,54 +294,98 @@ class APSC
 		
 		echo '<ul>';
 		foreach( $Acfk as $field_name ) {
-			echo '<li><a href="javascript:void(0);" class="custom_fields_target_click">' . $field_name . '</a></li>';
+			echo '<li><a href="javascript:void(0);" class="custom_fields_target_click button">' . $field_name . '</a></li>';
 		}
 		echo '</ul>';
 	}
 
 
 
-	// Update Setting
-	function update() {
-		$UPFN = strip_tags( $_POST[$this->UPFN] );
-		if( $UPFN == 'Y' ) {
-			unset( $_POST[$this->UPFN] );
+	// DataUpdate
+	function dataUpdate() {
 
-			// donated
+		$RecordField = false;
+		
+		if( !empty( $_POST["record_field"] ) ) {
+			$RecordField = strip_tags( $_POST["record_field"] );
+		}
+
+		if( !empty( $RecordField ) && !empty( $_POST["update"] ) ) {
+			$this->update();
+		}
+
+		if( !empty( $RecordField ) && !empty( $_POST["reset"] ) ) {
+			$this->update_reset( $RecordField );
+		}
+
+		if( !empty( $_POST["donate_key"] ) && !empty( $_POST["update"] ) ) {
+			$this->DonatingCheck();
+		}
+
+	}
+
+	// DataUpdate
+	function update_validate() {
+		$Update = array();
+
+		if( !empty( $_POST[$this->UPFN] ) ) {
+			$UPFN = strip_tags( $_POST[$this->UPFN] );
+			if( $UPFN == $this->UPFN ) {
+				$Update["UPFN"] = strip_tags( $_POST[$this->UPFN] );
+			}
+		}
+
+		return $Update;
+	}
+
+	// DataUpdate
+	function DonatingCheck() {
+		$Update = $this->update_validate();
+
+		if( !empty( $Update ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
 			if( !empty( $_POST["donate_key"] ) ) {
-
 				$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
 				if( $this->DonateKey == $SubmitKey ) {
 					update_option( $this->ltd . '_donated' , $SubmitKey );
-					$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donate.' , $this->ltd ) . '</strong></p></div>';
+					wp_redirect( add_query_arg( $this->MsgQ , 'donated' , remove_query_arg( $this->MsgQ ) ) );
+					exit;
 				}
+			}
+		}
 
-			} elseif( !empty( $_POST["data"] ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
+	}
+	// Update Setting
+	function update() {
+		$Update = $this->update_validate();
+		
+		if( !empty( $Update ) && check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
+			unset( $Update["UPFN"] );
+			if( !empty( $_POST["data"] ) ) {
 
-				$Update = array();
 				foreach($_POST["data"] as $key => $val) {
 					if( !empty( $val ) ) {
 						$Update[strip_tags( $key )] = strip_tags( $val );
 					}
 				}
-	
-				if(!empty( $Update )) {
-					$Record = $this->Record[strip_tags( $_POST["set_sort"] )];
+				
+				if( !empty( $Update ) ) {
+					$Record = $this->Record[strip_tags( $_POST["record_field"] )];
 					update_option( $Record , $Update );
-					$this->Msg .= '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+					wp_redirect( add_query_arg( $this->MsgQ , 'update' , remove_query_arg( $this->MsgQ ) ) );
+					exit;
 				}
-
+				
 			}
-
 		}
 	}
 
 	// Update Reset
 	function update_reset() {
 		if( check_admin_referer( $this->Nonces["value"] , $this->Nonces["field"] ) ) {
-			$Record = $this->Record[strip_tags( $_POST["set_sort"] )];
+			$Record = $this->Record[strip_tags( $_POST["record_field"] )];
 			delete_option( $Record );
-			$this->Msg .= '<div class="updated"><p><strong>' . __('Settings saved.') . '</strong></p></div>';
+			wp_redirect( add_query_arg( $this->MsgQ , 'delete' , remove_query_arg( $this->MsgQ ) ) );
+			exit;
 		}
 	}
 
@@ -365,9 +423,15 @@ class APSC
 			if( !empty( $GetData ) ) {
 				$Data = $GetData;
 			}
+		} elseif( $query->is_archive() && $query->is_month() ) {
+			$GetData = $this->get_data( 'monthly' );
+			if( !empty( $GetData ) ) {
+				$Data = $GetData;
+			}
 		}
 		
 		if( !empty( $Data ) && $query->is_main_query() ) {
+
 			// posts_per_page
 			if( !empty( $Data["posts_per_page"] ) ) {
 				if( $Data["posts_per_page"] == 'all' ) {
@@ -379,7 +443,7 @@ class APSC
 			// orderby
 			if( !empty( $Data["orderby"] ) ) {
 				if( $Data["orderby"] != 'date' ) {
-					if( $Data["orderby"] == 'custom_fields' ) {
+					if( $Data["orderby"] == 'custom_fields' && !empty( $Data["orderby_set"] ) ) {
 						$Pcf = $wpdb->get_col( "SELECT DISTINCT meta_value FROM $wpdb->postmeta WHERE `meta_key` LIKE '%" . strip_tags( $Data["orderby_set"] ) . "%' ORDER BY meta_value" );
 						$numeric = true;
 						foreach( $Pcf as $cf ) {
@@ -412,6 +476,18 @@ class APSC
 	}
 
 	
+
+	// FilterStart
+	function display_msg() {
+		if( !empty( $_GET[$this->MsgQ] ) ) {
+			$msg = strip_tags(  $_GET[$this->MsgQ] );
+			if( $msg == 'update' or $msg == 'delete' ) {
+				$this->Msg .= '<div class="updated"><p><strong>' . __( 'Settings saved.' ) . '</strong></p></div>';
+			} elseif( $msg == 'donated' ) {
+				$this->Msg .= '<div class="updated"><p><strong>' . __( 'Thank you for your donation.' , $this->ltd ) . '</strong></p></div>';
+			}
+		}
+	}
 
 	// FilterStart
 	function layout_footer( $text ) {
