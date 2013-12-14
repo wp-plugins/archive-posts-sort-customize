@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-10 18:08+0900\n"
-"PO-Revision-Date: 2013-12-10 18:08+0900\n"
+"POT-Creation-Date: 2013-12-14 11:08+0900\n"
+"PO-Revision-Date: 2013-12-14 11:08+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -51,6 +51,7 @@ msgstr ""
 
 #: archive-posts-sort-customize.php:119
 #: archive-posts-sort-customize.php:166
+#: inc/settings.php:21
 msgid "Monthly"
 msgstr ""
 
@@ -110,12 +111,12 @@ msgstr ""
 msgid "From small to many"
 msgstr ""
 
-#: archive-posts-sort-customize.php:486
+#: archive-posts-sort-customize.php:487
 #: inc/donation.php:5
 msgid "Thank you for your donation."
 msgstr ""
 
-#: archive-posts-sort-customize.php:502
+#: archive-posts-sort-customize.php:503
 msgid "Please consider a donate if you are satisfied with this plugin."
 msgstr ""
 
@@ -224,27 +225,27 @@ msgstr ""
 msgid "The plugin that allows you to add the value of the options. Option value that you have created, can be used in addition to the template tag, Short code can be used in the body of the article."
 msgstr ""
 
-#: inc/settings.php:37
+#: inc/settings.php:40
 msgid "Please set your favorite."
 msgstr ""
 
-#: inc/settings.php:54
+#: inc/settings.php:57
 msgid "Sort settings"
 msgstr ""
 
-#: inc/settings.php:63
+#: inc/settings.php:66
 msgid "Number of posts per page"
 msgstr ""
 
-#: inc/settings.php:79
+#: inc/settings.php:82
 msgid "Sort target"
 msgstr ""
 
-#: inc/settings.php:116
+#: inc/settings.php:119
 msgid "Reset all settings?"
 msgstr ""
 
-#: inc/settings.php:117
+#: inc/settings.php:120
 msgid "Reset settings"
 msgstr ""
 

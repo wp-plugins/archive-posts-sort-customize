@@ -16,6 +16,9 @@ if( $this->SetArchive == 'home' ) {
 	}
 } elseif( $this->SetArchive == 'search' ) {
 	$ViewLink = array( get_search_link( 'Hello' ) , __( 'Search' ) );
+} elseif( $this->SetArchive == 'monthly' ) {
+	$currentDate = array( "y" => gmdate( 'Y' , current_time( 'timestamp' ) ) , "m" => gmdate( 'm' , current_time('timestamp') ) );
+	$ViewLink = array( get_month_link( $currentDate["y"] , $currentDate["m"] ) , __( 'Monthly' , $this->ltd ) . __( 'Archives' ) );
 }
 
 
