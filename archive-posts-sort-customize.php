@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.2.4.1
+Version: 1.2.4.2
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_4_1
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_2_4_2
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -53,7 +53,7 @@ class APSC
 
 
 	function __construct() {
-		$this->Ver = '1.2.4.1';
+		$this->Ver = '1.2.4.2';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = plugin_dir_path( __FILE__ );
 		$this->Url = plugin_dir_url( __FILE__ );
@@ -305,21 +305,22 @@ class APSC
 	function dataUpdate() {
 
 		$RecordField = false;
-		
-		if( !empty( $_POST["record_field"] ) ) {
-			$RecordField = strip_tags( $_POST["record_field"] );
-		}
+		if( !empty( $_POST[$this->Nonces["field"]] ) ) {
+			if( !empty( $_POST["record_field"] ) ) {
+				$RecordField = strip_tags( $_POST["record_field"] );
+			}
 
-		if( !empty( $RecordField ) && !empty( $_POST["update"] ) ) {
-			$this->update();
-		}
+			if( !empty( $RecordField ) && !empty( $_POST["update"] ) ) {
+				$this->update();
+			}
 
-		if( !empty( $RecordField ) && !empty( $_POST["reset"] ) ) {
-			$this->update_reset( $RecordField );
-		}
+			if( !empty( $RecordField ) && !empty( $_POST["reset"] ) ) {
+				$this->update_reset( $RecordField );
+			}
 
-		if( !empty( $_POST["donate_key"] ) && !empty( $_POST["update"] ) ) {
-			$this->DonatingCheck();
+			if( !empty( $_POST["donate_key"] ) && !empty( $_POST["update"] ) ) {
+				$this->DonatingCheck();
+			}
 		}
 
 	}
