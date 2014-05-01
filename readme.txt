@@ -1,6 +1,6 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_2_4_2
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_3
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
 Tested up to: 3.9
@@ -35,6 +35,10 @@ These lists to Customization is possible.
 2. Sort support of Custom fields
 
 == Changelog ==
+
+= 1.3 =
+* Updated: Settings for per Categories.
+* Changed: Data version.
 
 = 1.2.4.2 =
 * Fixed: Data update way.

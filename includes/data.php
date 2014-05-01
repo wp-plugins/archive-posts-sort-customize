@@ -1,0 +1,203 @@
+<?php
+
+class APSC_Data
+{
+
+	function init() {
+
+		if( is_admin() ) {
+
+			add_action( 'admin_init' , array( $this , 'dataUpdate' ) );
+
+		}
+		
+		add_action( 'wp_loaded' , array( $this , ( 'upgrade_data' ) ) );
+		
+	}
+
+	function upgrade_data() {
+
+		global $APSC;
+		
+		$version = get_option( $APSC->Record['db_version'] );
+		
+		if( $version != 1 ) {
+
+			foreach( $APSC->Record as $rec => $record ) {
+				
+				$Data = array();
+
+				if( $rec != 'donate' && $rec != 'db_version' ) {
+					
+					$GetData = $this->get_data( $rec );
+
+					if( !empty( $GetData ) ) {
+						
+						$Data['default'] = $GetData;
+						$Data['default']['use'] = 1;
+						
+						if( $rec == 'cat' ) {
+							
+							 $categories = get_categories();
+							 foreach( $categories as $key => $category ) {
+								$Data[$category->cat_ID] = $GetData;
+								$Data[$category->cat_ID]['use'] = 0;
+							 }
+							 
+						}
+						
+						update_option( $record , $Data );
+						
+					}
+					
+				}
+	
+			}
+
+			update_option( $APSC->Record['db_version'] , 1 );
+
+		}
+
+	}
+
+	function get_data( $record ) {
+
+		global $APSC;
+
+		$record = strip_tags( $record );
+		$GetData = get_option( $APSC->Record[$record] );
+
+		$Data = array();
+		if( !empty( $GetData ) ) {
+			$Data = $GetData;
+		}
+		
+		return $Data;
+
+	}
+
+	function dataUpdate() {
+		
+		global $APSC;
+		
+		$RecordField = false;
+
+		if( !empty( $_POST[$APSC->Nonces["field"]] ) ) {
+			
+			if( check_admin_referer( $APSC->Nonces["value"] , $APSC->Nonces["field"] ) ) {
+
+				if( !empty( $_POST["donate_key"] ) && !empty( $_POST["update"] ) ) {
+					$this->DonatingCheck();
+				}
+
+				if( !empty( $_POST["record_field"] ) ) {
+					$RecordField = strip_tags( $_POST["record_field"] );
+				}
+				
+				if( !empty( $RecordField ) ) {
+					if( !empty( $_POST["update"] ) ) {
+						$this->update();
+					} elseif( !empty( $_POST["reset"] ) ) {
+						$this->update_reset();
+					}
+				}
+
+			}
+
+		}
+
+	}
+
+	function update_validate() {
+
+		global $APSC;
+
+		$Update = array();
+
+		if( !empty( $_POST[$APSC->UPFN] ) ) {
+			$UPFN = strip_tags( $_POST[$APSC->UPFN] );
+			if( $UPFN == $APSC->UPFN ) {
+				$Update["UPFN"] = strip_tags( $_POST[$APSC->UPFN] );
+			}
+		}
+
+		return $Update;
+
+	}
+
+	function DonatingCheck() {
+		
+		global $APSC;
+
+		$Update = $this->update_validate();
+
+		if( !empty( $Update ) ) {
+
+			if( !empty( $_POST["donate_key"] ) ) {
+
+				$SubmitKey = md5( strip_tags( $_POST["donate_key"] ) );
+
+				if( $APSC->DonateKey == $SubmitKey ) {
+
+					update_option( $APSC->ltd . '_donated' , $SubmitKey );
+					wp_redirect( add_query_arg( $APSC->MsgQ , 'donated' , remove_query_arg( $APSC->MsgQ ) ) );
+					exit;
+
+				}
+
+			}
+
+		}
+
+	}
+
+	function update() {
+		
+		global $APSC;
+
+		$Update = $this->update_validate();
+		
+		if( !empty( $Update ) ) {
+			
+			if( !empty( $_POST["data"] ) ) {
+				
+				unset( $Update["UPFN"] );
+
+				foreach( $_POST["data"] as $type => $setting ) {
+					
+					if( !empty( $setting['use'] ) ) {
+						
+						$Update[$type] = $setting;
+						
+					}
+					
+				}
+				
+				if( !empty( $Update ) ) {
+
+					$Record = $APSC->Record[strip_tags( $_POST["record_field"] )];
+					update_option( $Record , $Update );
+					wp_redirect( add_query_arg( $APSC->MsgQ , 'update' , remove_query_arg( $APSC->MsgQ ) ) );
+					exit;
+
+				}
+				
+			}
+
+		}
+
+	}
+
+	function update_reset() {
+
+		global $APSC;
+
+		$Record = $APSC->Record[strip_tags( $_POST["record_field"] )];
+		delete_option( $Record );
+		wp_redirect( add_query_arg( $APSC->MsgQ , 'delete' , remove_query_arg( $APSC->MsgQ ) ) );
+		exit;
+
+	}
+
+}
+?>
