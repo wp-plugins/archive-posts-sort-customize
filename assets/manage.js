@@ -1,7 +1,13 @@
 jQuery(document).ready(function($) {
 
 	$('.apsc .postbox .handlediv').on('click', function( ev ) {
-		$(ev.target).parent().toggleClass('closed');
+		if( $(ev.target).parent().hasClass('closed') ) {
+			$(ev.target).parent().removeClass('closed');
+			$(ev.target).parent().children('.inside').show();
+		} else {
+			$(ev.target).parent().addClass('closed');
+			$(ev.target).parent().children('.inside').hide();
+		}
 	});
 
 	$('.posts_per_page_settings .posts_per_page_fields label input[type=radio]').on('click', function( ev ) {
