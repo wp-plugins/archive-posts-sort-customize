@@ -3,9 +3,9 @@
 Plugin Name: Archive Posts Sort Customize
 Description: Customize the display order of the list of Archive Posts.
 Plugin URI: http://wordpress.org/extend/plugins/archive-posts-sort-customize/
-Version: 1.3.1
+Version: 1.4 beta
 Author: gqevu6bsiz
-Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_3_1
+Author URI: http://gqevu6bsiz.chicappa.jp/?utm_source=use_plugin&utm_medium=list&utm_content=apsc&utm_campaign=1_4_beta
 Text Domain: apsc
 Domain Path: /languages
 */
@@ -53,7 +53,7 @@ class APSC
 
 	function __construct() {
 
-		$this->Ver = '1.3.1';
+		$this->Ver = '1.4 beta';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = plugin_dir_path( __FILE__ );
 		$this->Url = plugin_dir_url( __FILE__ );
@@ -91,22 +91,34 @@ class APSC
 		require_once $this->Dir . trailingslashit( $this->Path['inc'] ) . 'manage.php';
 		require_once $this->Dir . trailingslashit( $this->Path['inc'] ) . 'filter.php';
 
-		add_action( 'setup_theme' , array( $this , ( 'setup' ) ) );
+		add_action( 'plugins_loaded' , array( $this , ( 'setup' ) ) );
+		add_action( 'init' , array( $this , ( 'record_add' ) ) );
 
 	}
 
 	function setup() {
 		
-		$APSC_Manage = new APSC_Manage();
-		$APSC_Manage->init();
-
 		$APSC_Data = new APSC_Data();
-		$APSC_Data->init();
-
+		$APSC_Manage = new APSC_Manage();
 		$APSC_Filter = new APSC_Filter();
-		$APSC_Filter->init();
+		
+		$APSC_Data->init();
 		
 	}
+	
+	function record_add() {
+
+		$APSC_Lists = new APSC_Lists();
+		
+		$taxonomies = $APSC_Lists->get_custom_taxonomies();
+		if( !empty( $taxonomies ) ) {
+			foreach( $taxonomies as $tax_name => $tanoxomy ) {
+				$this->Record['ct_' . $tax_name] = $this->ltd . '_ct_' . $tax_name;
+			}
+		}
+
+	}
+	
 
 }
 

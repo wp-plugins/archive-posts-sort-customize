@@ -13,7 +13,15 @@ class APSC_Lists
 
 		$Settings = $Default;
 		
-		$Data = $APSC_Data->get_data( $args['archive'] );
+		if( $args['archive'] != 'custom_taxonomy' ) {
+
+			$Data = $APSC_Data->get_data( $args['archive'] );
+
+		} else {
+
+			$Data = $APSC_Data->get_custom_taxonomy_data( $args['taxonomy_name'] );
+
+		}
 
 		if( !empty( $Data ) ) {
 
@@ -117,6 +125,8 @@ class APSC_Lists
 						<input type="checkbox" name="<?php echo $field_name; ?>" class="use_val" value="1" <?php checked( $Settings['use'] , 1 ); ?> />
 						<?php if( $args['archive'] == 'cat' ) : ?>
 							<?php $term = __( 'Categories' ); ?>
+						<?php elseif( $args['archive'] == 'custom_taxonomy' ) : ?>
+							<?php $term = __( 'Custom Taxonomies' , $APSC->ltd ); ?>
 						<?php endif; ?>
 						<?php printf( __( 'Another sort settings of only this %s.' , $APSC->ltd ) , $term ); ?>
 					</label>
@@ -197,10 +207,17 @@ class APSC_Lists
 			
 		} elseif( $args['archive'] == 'tag' ) {
 			
-			$Tag = get_tags( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true) );
+			$Tag = get_tags( array( 'number' => 1 , 'orderby' => 'ID' , 'hide_empty' => true ) );
 			if( !empty( $Tag ) ) {
 				$preview_info['url'] = get_tag_link( $Tag[0]->term_id );
 				$preview_info['label'] = __( 'Tags' );
+			}
+			
+		} elseif( $args['archive'] == 'custom_taxonomy' ) {
+			
+			if( !empty( $args['term_id'] ) ) {
+				$preview_info['url'] = get_term_link( (int) $args['term_id'] , $args['taxonomy_name'] );
+				$preview_info['label'] = $args['title'];
 			}
 			
 		} elseif( $args['archive'] == 'search' ) {
@@ -394,6 +411,39 @@ class APSC_Lists
 		
 		return $Acfk;
 		
+	}
+
+	function get_custom_taxonomies() {
+		
+		$Terms = array();
+		
+		$get_taxonomies = get_taxonomies();
+		$remove_terms = array( 'category' , 'post_tag' , 'nav_menu' , 'link_category' , 'post_format' );
+		
+		if( !empty( $get_taxonomies ) ) {
+
+			foreach( $get_taxonomies as $term_name => $val ) {
+				if( in_array( $term_name , $remove_terms ) ) {
+
+					unset( $get_taxonomies[$term_name] );
+
+				}
+			}
+
+		}
+		
+		if( !empty( $get_taxonomies ) ) {
+			
+			foreach( $get_taxonomies as $term_name => $val ) {
+
+				$Terms[$term_name] = get_taxonomy( $term_name );
+
+			}
+
+		}
+
+		return $Terms;
+
 	}
 
 }

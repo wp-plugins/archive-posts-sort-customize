@@ -5,17 +5,23 @@ class APSC_Manage
 
 	var $AuthorUrl = 'http://gqevu6bsiz.chicappa.jp/';
 
+	function __construct() {
+
+		if( !is_network_admin() && is_admin() ) {
+
+			$this->init();
+
+		}
+
+	}
+
 	function init() {
 		
 		global $APSC;
 		
-		if( is_admin() ) {
-
-			add_filter( 'plugin_action_links_' . trailingslashit( $APSC->PluginSlug ) . $APSC->PluginSlug  . '.php' , array( $this , 'plugin_action_links' ) );
-			add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
-			add_action( 'admin_notices' , array( $this , 'admin_notices' ) );
-			
-		}
+		add_filter( 'plugin_action_links_' . trailingslashit( $APSC->PluginSlug ) . $APSC->PluginSlug  . '.php' , array( $this , 'plugin_action_links' ) );
+		add_action( 'admin_menu' , array( $this , 'admin_menu' ) );
+		add_action( 'admin_notices' , array( $this , 'admin_notices' ) );
 		
 	}
 
@@ -41,6 +47,16 @@ class APSC_Manage
 		add_menu_page( sprintf( __( '%1$s %2$s for %3$s %4$s' , $APSC->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $APSC->ltd ) , __( 'Home' ) , __( 'Archives' ) ) , __( 'Archive Posts Sort Customize' , $APSC->ltd ) , $cap , $APSC->PageSlug , $view_func );
 		add_submenu_page( $APSC->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $APSC->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $APSC->ltd ) , __( 'Categories' ) , __( 'Archives' ) ) , __( 'Categories' ) , $cap , $APSC->Record['cat'] , $view_func );
 		add_submenu_page( $APSC->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $APSC->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $APSC->ltd ) , __( 'Tags' ) , __( 'Archives' ) ) , __( 'Tags' ) , $cap , $APSC->Record['tag'] , $view_func );
+
+		$APSC_Lists = new APSC_Lists();
+		
+		$taxonomies = $APSC_Lists->get_custom_taxonomies();
+		if( !empty( $taxonomies ) ) {
+			foreach( $taxonomies as $tax_name => $tanoxomy ) {
+				add_submenu_page( $APSC->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $APSC->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $APSC->ltd ) , $tanoxomy->label , __( 'Archives' ) ) , $tanoxomy->label , $cap , $APSC->Record['ct_' . $tax_name] , $view_func );
+			}
+		}
+
 		add_submenu_page( $APSC->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $APSC->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $APSC->ltd ) , __( 'Search' ) , __( 'Archives' ) ) , __( 'Search' ) , $cap , $APSC->Record['search'] , $view_func );
 		add_submenu_page( $APSC->PageSlug , sprintf( __( '%1$s %2$s for %3$s %4$s' , $APSC->ltd ) , __( 'Customize' ) ,  __( 'Sort' , $APSC->ltd ) , __( 'Monthly' ) , __( 'Archives' ) ) , sprintf( '%1$s ( %2$s )' , __( 'Archives' ) , __( 'Monthly' , $APSC->ltd ) ) , $cap , $APSC->Record['monthly'] , $view_func );
 
@@ -117,10 +133,27 @@ class APSC_Manage
 		
 			include_once $this->get_view_dir() . 'monthly.php';
 
+		} elseif( strstr( $plugin_page , $APSC->ltd . '_ct_' ) ) {
+			
+			include_once $this->get_view_dir() . 'custom_taxonomies.php';
+
 		}
 		
 		add_filter( 'in_admin_footer' , array( $this , 'display_donation' ) );
 		add_filter( 'admin_footer_text' , array( $this , 'admin_footer_text' ) );
+		
+	}
+
+	function get_query_taxonomy() {
+		
+		global $plugin_page;
+		global $APSC;
+
+		$APSC_Lists = new APSC_Lists();
+
+		$taxonomy = str_replace( $APSC->ltd . '_ct_' , '' , $plugin_page );
+		
+		return get_taxonomy( $taxonomy );
 		
 	}
 

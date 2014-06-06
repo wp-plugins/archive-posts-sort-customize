@@ -3,13 +3,19 @@
 class APSC_Filter
 {
 
-	function init() {
-		
+	function __construct() {
+
 		if( !is_admin() ) {
 
-			add_action( 'pre_get_posts' , array( $this , 'archive_sort' ) );
+			$this->init();
 
 		}
+
+	}
+
+	function init() {
+		
+		add_action( 'pre_get_posts' , array( $this , 'archive_sort' ) );
 
 	}
 
@@ -17,7 +23,6 @@ class APSC_Filter
 		
 		global $wpdb;
 		global $APSC;
-		
 		
 		if( $query->is_main_query() ) {
 
@@ -120,7 +125,7 @@ class APSC_Filter
 
 				$GetData['default'] = $CatData['default'];
 				
-			} elseif( !empty( $CatData['default'] ) ) {
+			} else {
 
 				$GetData = '';
 				
@@ -129,6 +134,27 @@ class APSC_Filter
 		} elseif( $query->is_tag() ) {
 
 			$GetData = $APSC_Data->get_data( 'tag' );
+
+		} elseif( $query->is_tax() ) {
+
+			$current_taxonomy = $query->get_queried_object()->taxonomy;
+			$current_term_id = $query->get_queried_object()->term_id;
+			$TaxData = $APSC_Data->get_custom_taxonomy_data( $current_taxonomy );
+
+			if( !empty( $TaxData[$current_term_id] ) && !empty( $TaxData[$current_term_id]['use'] ) ) {
+
+				$GetData['default'] = $TaxData[$current_term_id];
+
+			} elseif( !empty( $TaxData['default'] ) ) {
+
+				$GetData = $TaxData['default'];
+				
+			} else {
+
+				$GetData = '';
+				
+			}
+
 
 		} elseif( $query->is_search() ) {
 

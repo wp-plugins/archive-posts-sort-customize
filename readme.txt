@@ -1,9 +1,9 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_3_1
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_4_beta
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
-Tested up to: 3.9
+Tested up to: 3.9.1
 Stable tag: 1.3.1
 License: GPL2
 
@@ -35,6 +35,10 @@ These lists to Customization is possible.
 2. Sort support of Custom fields
 
 == Changelog ==
+
+= 1.4 =
+* Added: Custon Taxonomies.
+* Fixed: Get data mistake when category settings.
 
 = 1.3.1 =
 * Fixed: Javascript toggle miss.
