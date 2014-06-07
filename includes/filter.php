@@ -147,15 +147,14 @@ class APSC_Filter
 
 			} elseif( !empty( $TaxData['default'] ) ) {
 
-				$GetData = $TaxData['default'];
+				$GetData['default'] = $TaxData['default'];
 				
 			} else {
 
 				$GetData = '';
 				
 			}
-
-
+			
 		} elseif( $query->is_search() ) {
 
 			$GetData = $APSC_Data->get_data( 'search' );
