@@ -1,6 +1,6 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_4_beta
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_4
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
 Tested up to: 3.9.1

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-02 20:50+0900\n"
-"PO-Revision-Date: 2014-05-02 20:50+0900\n"
+"POT-Creation-Date: 2014-07-07 17:19+0900\n"
+"PO-Revision-Date: 2014-07-07 17:26+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -15,96 +15,102 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: archive-posts-sort-customize.php:4
-msgid "Customize the display order of the list of Archive Posts."
+msgid "Customize the posts order of the list of Archive Posts."
 msgstr ""
 
-#: includes/lists.php:69
-#: includes/lists.php:78
-#: includes/lists.php:87
+#: includes/lists.php:77
+#: includes/lists.php:86
+#: includes/lists.php:95
 msgid "Sort settings"
 msgstr ""
 
-#: includes/lists.php:121
+#: includes/lists.php:129
+msgid "Custom Taxonomies"
+msgstr ""
+
+#: includes/lists.php:131
 #, php-format
 msgid "Another sort settings of only this %s."
 msgstr ""
 
-#: includes/lists.php:134
+#: includes/lists.php:144
 msgid "Number of posts per page"
 msgstr ""
 
-#: includes/lists.php:137
-#: includes/lists.php:148
-#: includes/lists.php:162
+#: includes/lists.php:147
+#: includes/lists.php:158
+#: includes/lists.php:172
 #, php-format
 msgid "The default is <strong>%s</strong>."
 msgstr ""
 
-#: includes/lists.php:137
-#: includes/lists.php:229
+#: includes/lists.php:147
+#: includes/lists.php:246
 msgid "Follow Reading Setting"
 msgstr ""
 
-#: includes/lists.php:145
+#: includes/lists.php:155
 msgid "Sort target"
 msgstr ""
 
-#: includes/lists.php:166
+#: includes/lists.php:176
 msgid "From new to old"
 msgstr ""
 
-#: includes/lists.php:166
+#: includes/lists.php:176
 msgid "From many to small"
 msgstr ""
 
-#: includes/lists.php:167
+#: includes/lists.php:177
 msgid "From old to new"
 msgstr ""
 
-#: includes/lists.php:167
+#: includes/lists.php:177
 msgid "From small to many"
 msgstr ""
 
-#: includes/lists.php:215
-#: includes/manage.php:45
+#: includes/lists.php:232
+#: includes/manage.php:61
 #: views/monthly.php:13
 msgid "Monthly"
 msgstr ""
 
-#: includes/lists.php:228
+#: includes/lists.php:245
 msgid "View all posts"
 msgstr ""
 
-#: includes/lists.php:230
+#: includes/lists.php:247
 msgid "Set the number of posts"
 msgstr ""
 
-#: includes/lists.php:251
+#: includes/lists.php:268
 msgid "Current number of Reading Setting"
 msgstr ""
 
-#: includes/lists.php:287
+#: includes/lists.php:304
 msgid "Comments Count"
 msgstr ""
 
-#: includes/lists.php:323
+#: includes/lists.php:340
 msgid "Please enter the name of the custom field you want to sort."
 msgstr ""
 
-#: includes/lists.php:324
+#: includes/lists.php:341
 msgid "Custom Fields Name"
 msgstr ""
 
-#: includes/lists.php:338
+#: includes/lists.php:355
 msgid "Click here, please look for the required custom fields if you do not know the name of the custom field."
 msgstr ""
 
-#: includes/manage.php:41
-#: includes/manage.php:42
-#: includes/manage.php:43
-#: includes/manage.php:44
-#: includes/manage.php:45
+#: includes/manage.php:47
+#: includes/manage.php:48
+#: includes/manage.php:49
+#: includes/manage.php:56
+#: includes/manage.php:60
+#: includes/manage.php:61
 #: views/category.php:13
+#: views/custom_taxonomies.php:14
 #: views/default.php:13
 #: views/monthly.php:13
 #: views/search.php:13
@@ -113,20 +119,21 @@ msgstr ""
 msgid "%1$s %2$s for %3$s %4$s"
 msgstr ""
 
-#: includes/manage.php:41
+#: includes/manage.php:47
 msgid "Archive Posts Sort Customize"
 msgstr ""
 
-#: includes/manage.php:61
+#: includes/manage.php:77
 #: views/donation.php:6
 msgid "Thank you for your donation."
 msgstr ""
 
-#: includes/manage.php:147
+#: includes/manage.php:180
 msgid "Please consider a donate if you are satisfied with this plugin."
 msgstr ""
 
 #: views/category.php:14
+#: views/custom_taxonomies.php:15
 #: views/default.php:14
 #: views/monthly.php:14
 #: views/search.php:14
@@ -135,11 +142,13 @@ msgid "Please set your favorite."
 msgstr ""
 
 #: views/category.php:29
+#: views/custom_taxonomies.php:30
 #, php-format
 msgid "Settings for per %1$s"
 msgstr ""
 
 #: views/category.php:47
+#: views/custom_taxonomies.php:48
 #: views/default.php:33
 #: views/monthly.php:33
 #: views/search.php:33
@@ -148,6 +157,7 @@ msgid "Reset all settings?"
 msgstr ""
 
 #: views/category.php:48
+#: views/custom_taxonomies.php:49
 #: views/default.php:34
 #: views/monthly.php:34
 #: views/search.php:34

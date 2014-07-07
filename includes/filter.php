@@ -137,22 +137,25 @@ class APSC_Filter
 
 		} elseif( $query->is_tax() ) {
 
-			$current_taxonomy = $query->get_queried_object()->taxonomy;
-			$current_term_id = $query->get_queried_object()->term_id;
-			$TaxData = $APSC_Data->get_custom_taxonomy_data( $current_taxonomy );
-
-			if( !empty( $TaxData[$current_term_id] ) && !empty( $TaxData[$current_term_id]['use'] ) ) {
-
-				$GetData['default'] = $TaxData[$current_term_id];
-
-			} elseif( !empty( $TaxData['default'] ) ) {
-
-				$GetData['default'] = $TaxData['default'];
-				
-			} else {
-
-				$GetData = '';
-				
+			$tax = $query->get_queried_object();
+			if( !empty( $tax ) ) {
+				$current_taxonomy = $query->get_queried_object()->taxonomy;
+				$current_term_id = $query->get_queried_object()->term_id;
+				$TaxData = $APSC_Data->get_custom_taxonomy_data( $current_taxonomy );
+	
+				if( !empty( $TaxData[$current_term_id] ) && !empty( $TaxData[$current_term_id]['use'] ) ) {
+	
+					$GetData['default'] = $TaxData[$current_term_id];
+	
+				} elseif( !empty( $TaxData['default'] ) ) {
+	
+					$GetData['default'] = $TaxData['default'];
+					
+				} else {
+	
+					$GetData = '';
+					
+				}
 			}
 			
 		} elseif( $query->is_search() ) {
