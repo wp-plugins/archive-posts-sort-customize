@@ -4,7 +4,7 @@ Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
 Tested up to: 3.9.1
-Stable tag: 1.3.1
+Stable tag: 1.4
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
