@@ -304,6 +304,7 @@ class APSC_Lists
 			'comment_count' => __( 'Comments Count' , $APSC->ltd ),
 			'id' => 'ID',
 			'modified' => __( 'Last Modified' ),
+			'menu_order' => sprintf( '%1$s (%2$s)' , __( 'Order' ) , __( 'Page Attributes' ) ),
 			'custom_fields' => __( 'Custom Fields' )
 		);
 
