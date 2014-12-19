@@ -9,7 +9,7 @@ class APSC_Lists
 
 		$APSC_Data = new APSC_Data();
 		
-		$Default = array( 'use' => 0 , 'posts_per_page' => 'default' , 'posts_per_page_num' => false , 'orderby' => 'date' , 'orderby_set' => false , 'order' => 'desc' );
+		$Default = array( 'use' => 0 , 'posts_per_page' => 'default' , 'posts_per_page_num' => false , 'orderby' => 'date' , 'orderby_set' => false , 'order' => 'desc' , 'ignore_words' => array() );
 
 		$Settings = $Default;
 		
@@ -161,6 +161,9 @@ class APSC_Lists
 								</div>
 								<div class="orderby_customfields_settings">
 									<?php $this->get_fileds_custom_fields( $args , $Settings['orderby_set'] ); ?>
+								</div>
+								<div class="orderby_ignore_words_settings">
+									<?php $this->get_fileds_ignore_words( $args , $Settings['ignore_words'] ); ?>
 								</div>
 							</td>
 						</tr>
@@ -348,7 +351,7 @@ class APSC_Lists
 			$field_name .= '[default]';
 		}
 		$field_name .= '[orderby_set]';
-
+		
 		echo '<input type="text" class="regular-text orderby_set" name="' . $field_name . '" value="' . $custom_field . '" />';
 
 		echo '</label></p>';
@@ -365,6 +368,52 @@ class APSC_Lists
 			echo '</ul>';
 
 		}
+
+		echo '</div>';
+
+	}
+
+	function get_fileds_ignore_words( $args , $ignore_words ) {
+		
+		global $APSC;
+		
+		echo '<div class="orderby_ignore_words">';
+		
+		printf( '<p class="description">%s</p>' , __( 'If you want to ignore some words of beginning, please enter the word.' , $APSC->ltd ) );
+
+		echo '<p><input type="button" class="button button-primary" id="add_ignore_word" value="' . __( 'Add New Word' , $APSC->ltd ) . '" /></p>';
+
+		echo '<p>';
+		
+		$field_name = 'data';
+		if( !empty( $args['term_id'] ) ) {
+			$field_name .= '[' . $args['term_id'] . ']';
+		} else {
+			$field_name .= '[default]';
+		}
+
+		$field_name .= '[ignore_words][]';
+
+		if( !empty( $ignore_words ) ) {
+			
+			foreach( $ignore_words as $word ) {
+
+				echo '<p>';
+				echo '<input type="text" class="regular-text" name="' . $field_name . '" placeholder="The (space)" value="' . $word . '" />';
+				echo '<input type="button" class="button button-secondary remove_ignore_word" value="' . __( 'Remove Word' , $APSC->ltd ) . '" />';
+				echo '</p>';
+
+			}
+			
+		}
+		echo '</p>';
+		
+		echo '<div id="add_ignore_field" style="display: none;">';
+		echo '<p>';
+		echo '<input type="text" class="regular-text" name="' . $field_name . '" placeholder="The (space)" value="" />';
+		echo '<input type="button" class="button button-secondary remove_ignore_word" value="' . __( 'Remove Word' , $APSC->ltd ) . '" />';
+		echo '</p>';
+		echo '</div>';
 
 		echo '</div>';
 

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-07 17:19+0900\n"
-"PO-Revision-Date: 2014-07-07 17:26+0900\n"
+"POT-Creation-Date: 2014-12-19 13:11+0900\n"
+"PO-Revision-Date: 2014-12-19 13:11+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -39,13 +39,13 @@ msgstr ""
 
 #: includes/lists.php:147
 #: includes/lists.php:158
-#: includes/lists.php:172
+#: includes/lists.php:175
 #, php-format
 msgid "The default is <strong>%s</strong>."
 msgstr ""
 
 #: includes/lists.php:147
-#: includes/lists.php:246
+#: includes/lists.php:249
 msgid "Follow Reading Setting"
 msgstr ""
 
@@ -53,54 +53,67 @@ msgstr ""
 msgid "Sort target"
 msgstr ""
 
-#: includes/lists.php:176
+#: includes/lists.php:179
 msgid "From new to old"
 msgstr ""
 
-#: includes/lists.php:176
+#: includes/lists.php:179
 msgid "From many to small"
 msgstr ""
 
-#: includes/lists.php:177
+#: includes/lists.php:180
 msgid "From old to new"
 msgstr ""
 
-#: includes/lists.php:177
+#: includes/lists.php:180
 msgid "From small to many"
 msgstr ""
 
-#: includes/lists.php:232
+#: includes/lists.php:235
 #: includes/manage.php:61
 #: views/monthly.php:13
 msgid "Monthly"
 msgstr ""
 
-#: includes/lists.php:245
+#: includes/lists.php:248
 msgid "View all posts"
 msgstr ""
 
-#: includes/lists.php:247
+#: includes/lists.php:250
 msgid "Set the number of posts"
 msgstr ""
 
-#: includes/lists.php:268
+#: includes/lists.php:271
 msgid "Current number of Reading Setting"
 msgstr ""
 
-#: includes/lists.php:304
+#: includes/lists.php:307
 msgid "Comments Count"
 msgstr ""
 
-#: includes/lists.php:340
+#: includes/lists.php:344
 msgid "Please enter the name of the custom field you want to sort."
 msgstr ""
 
-#: includes/lists.php:341
+#: includes/lists.php:345
 msgid "Custom Fields Name"
 msgstr ""
 
-#: includes/lists.php:355
+#: includes/lists.php:359
 msgid "Click here, please look for the required custom fields if you do not know the name of the custom field."
+msgstr ""
+
+#: includes/lists.php:382
+msgid "If you want to ignore some words of beginning, please enter the word."
+msgstr ""
+
+#: includes/lists.php:384
+msgid "Add New Word"
+msgstr ""
+
+#: includes/lists.php:403
+#: includes/lists.php:414
+msgid "Remove Word"
 msgstr ""
 
 #: includes/manage.php:47
@@ -117,10 +130,6 @@ msgstr ""
 #: views/tag.php:13
 #, php-format
 msgid "%1$s %2$s for %3$s %4$s"
-msgstr ""
-
-#: includes/manage.php:47
-msgid "Archive Posts Sort Customize"
 msgstr ""
 
 #: includes/manage.php:77

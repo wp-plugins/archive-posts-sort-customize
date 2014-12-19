@@ -3,8 +3,8 @@ Contributors: gqevu6bsiz
 Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_5
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
-Tested up to: 4.0
-Stable tag: 1.4
+Tested up to: 4.1
+Stable tag: 1.5
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
@@ -38,6 +38,7 @@ These lists to Customization is possible.
 
 = 1.5 =
 * Added: Order field of Page Attributes of the Sort Target.
+* Added: Ignore words of Post Title order of Sort.
 
 = 1.4 =
 * Added: Custon Taxonomies.

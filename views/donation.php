@@ -61,7 +61,7 @@ global $APSC;
 	<div class="stuffbox" id="aboutbox">
 		<h3><span class="hndle"><?php _e( 'About plugin' , $APSC->ltd ); ?></span></h3>
 		<div class="inside">
-			<p><?php _e( 'Version checked' , $APSC->ltd ); ?> : 3.6.1 - 3.9.1</p>
+			<p><?php _e( 'Version checked' , $APSC->ltd ); ?> : 3.6.1 - 4.1</p>
 			<ul>
 				<li><a href="<?php echo $this->get_author_url( '' , 'side' ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $APSC->ltd ); ?></a></li>
 				<li><a href="http://wordpress.org/support/plugin/<?php echo $APSC->PluginSlug; ?>" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>

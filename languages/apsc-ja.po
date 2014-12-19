@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Archive Posts Sort Customize\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-07 17:19+0900\n"
-"PO-Revision-Date: 2014-07-07 17:49+0900\n"
+"POT-Creation-Date: 2014-12-19 13:11+0900\n"
+"PO-Revision-Date: 2014-12-19 13:18+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz@gmail.com <gqevu6bsiz@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -42,13 +42,13 @@ msgstr "1ページあたりの投稿表示数"
 
 #: includes/lists.php:147
 #: includes/lists.php:158
-#: includes/lists.php:172
+#: includes/lists.php:175
 #, php-format
 msgid "The default is <strong>%s</strong>."
 msgstr "デフォルト設定は <strong>%s</strong> です。"
 
 #: includes/lists.php:147
-#: includes/lists.php:246
+#: includes/lists.php:249
 msgid "Follow Reading Setting"
 msgstr "表示設定に従う"
 
@@ -56,55 +56,68 @@ msgstr "表示設定に従う"
 msgid "Sort target"
 msgstr "ソート対象"
 
-#: includes/lists.php:176
+#: includes/lists.php:179
 msgid "From new to old"
 msgstr "新しいものから古いもの"
 
-#: includes/lists.php:176
+#: includes/lists.php:179
 msgid "From many to small"
 msgstr "多いものから少ないもの"
 
-#: includes/lists.php:177
+#: includes/lists.php:180
 msgid "From old to new"
 msgstr "古いものから新しいもの"
 
-#: includes/lists.php:177
+#: includes/lists.php:180
 msgid "From small to many"
 msgstr "少ないものから多いもの"
 
-#: includes/lists.php:232
+#: includes/lists.php:235
 #: includes/manage.php:61
 #: views/monthly.php:13
 msgid "Monthly"
 msgstr "月別"
 
-#: includes/lists.php:245
+#: includes/lists.php:248
 msgid "View all posts"
 msgstr "全ての記事を表示"
 
-#: includes/lists.php:247
+#: includes/lists.php:250
 msgid "Set the number of posts"
 msgstr "記事数を設定"
 
-#: includes/lists.php:268
+#: includes/lists.php:271
 msgid "Current number of Reading Setting"
 msgstr "現在の表示設定数"
 
-#: includes/lists.php:304
+#: includes/lists.php:307
 msgid "Comments Count"
 msgstr "コメント数"
 
-#: includes/lists.php:340
+#: includes/lists.php:344
 msgid "Please enter the name of the custom field you want to sort."
 msgstr "ソート対象のカスタムフィールド名を入力してください。"
 
-#: includes/lists.php:341
+#: includes/lists.php:345
 msgid "Custom Fields Name"
 msgstr "カスタムフィールド名"
 
-#: includes/lists.php:355
+#: includes/lists.php:359
 msgid "Click here, please look for the required custom fields if you do not know the name of the custom field."
 msgstr "カスタムフィールド名が分からない場合こちらをクリックして対象のカスタムフィールド名を探してみてください。"
+
+#: includes/lists.php:382
+msgid "If you want to ignore some words of beginning, please enter the word."
+msgstr "タイトルの先頭から無視したいワードがあれば入力してください。"
+
+#: includes/lists.php:384
+msgid "Add New Word"
+msgstr "ワードを追加"
+
+#: includes/lists.php:403
+#: includes/lists.php:414
+msgid "Remove Word"
+msgstr "削除"
 
 #: includes/manage.php:47
 #: includes/manage.php:48
@@ -121,10 +134,6 @@ msgstr "カスタムフィールド名が分からない場合こちらをクリ
 #, php-format
 msgid "%1$s %2$s for %3$s %4$s"
 msgstr "%3$s %2$s %4$s %1$s"
-
-#: includes/manage.php:47
-msgid "Archive Posts Sort Customize"
-msgstr ""
 
 #: includes/manage.php:77
 #: views/donation.php:6

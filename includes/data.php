@@ -178,7 +178,28 @@ class APSC_Data
 					
 					if( !empty( $setting['use'] ) ) {
 						
-						$Update[$type] = $setting;
+						$use = 1;
+						$posts_per_page = strip_tags( $setting['posts_per_page'] );
+						$posts_per_page_num = intval( $setting['posts_per_page_num'] );
+						$order = strip_tags( $setting['order'] );
+						$orderby = strip_tags( $setting['orderby'] );
+						$orderby_set = strip_tags( $setting['orderby_set'] );
+						$ignore_words = array();
+						
+						if( !empty( $setting['ignore_words'] ) ) {
+							
+							foreach( $setting['ignore_words'] as $k => $word ) {
+								
+								$word = strip_tags( $word );
+
+								if( !empty( $word ) )
+									$ignore_words[] = $word;
+								
+							}
+							
+						}
+
+						$Update[$type] = array( 'use' => $use , 'posts_per_page' => $posts_per_page , 'posts_per_page_num' => $posts_per_page_num , 'order' => $order , 'orderby' => $orderby , 'orderby_set' => $orderby_set , 'ignore_words' => $ignore_words );
 						
 					}
 					

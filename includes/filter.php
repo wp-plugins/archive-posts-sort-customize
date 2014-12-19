@@ -16,7 +16,61 @@ class APSC_Filter
 	function init() {
 		
 		add_action( 'pre_get_posts' , array( $this , 'archive_sort' ) );
+		add_filter( 'posts_orderby' , array( $this , 'posts_orderby' ) , 10 , 2 );
 
+	}
+	
+	function posts_orderby( $orderby_statement , $query ) {
+		
+		global $wpdb;
+		global $APSC;
+		
+		if( $query->is_main_query() && !empty( $query->query_vars[$APSC->ltd . '_title_order'] ) ) {
+			
+			$Data = $this->get_data( $query );
+			
+			if( !empty( $Data['ignore_words'] ) ) {
+				
+				$ignore_words = $Data['ignore_words'];
+				
+				$new_orderby = "$wpdb->posts.post_title";
+				
+				$trim_sqls = array();
+				$trim_sql = false;
+				
+				foreach( $ignore_words as $word ) {
+					
+					$word = strip_tags( $word );
+					$trim_sqls[] = $wpdb->prepare( "TRIM( LEADING '%s' FROM `post_title` )" , $word );
+					
+				}
+				
+				$trim_sqls_count = count( $trim_sqls );
+				
+				$trim_sql = $trim_sqls[0];
+				unset( $trim_sqls[0] );
+				
+				if( !empty( $trim_sqls ) ) {
+					
+					foreach( $trim_sqls as $trim_word ) {
+						
+						$explode = explode( '`post_title`' , $trim_word );
+						$trim_sql = $explode[0] . $trim_sql . $explode[1];
+						
+					}
+					
+				}
+				
+				$new_orderby = $trim_sql;
+				$new_orderby .= ' ' . strtoupper( $query->query_vars[$APSC->ltd . '_title_order'] );
+	
+				$orderby_statement = $new_orderby;
+	
+			}
+
+		}
+		
+		return $orderby_statement;
 	}
 
 	function archive_sort( $query ) {
@@ -76,6 +130,9 @@ class APSC_Filter
 						} else {
 							
 							$query->set( 'orderby' , strip_tags( $Data['orderby'] ) );
+							
+							if( $Data['orderby'] == 'title' )
+								$query->set( $APSC->ltd . '_title_order' , $Data['order'] );
 							
 						}
 
@@ -177,6 +234,6 @@ class APSC_Filter
 		return $Data;
 		
 	}
-
+	
 }
 ?>

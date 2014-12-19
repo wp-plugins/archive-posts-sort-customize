@@ -55,13 +55,15 @@ jQuery(document).ready(function($) {
 				
 			OrderBy = $(box_el).find('.orderby_settings .orderby_fields select option:selected').val();
 
+			$(box_el).find('.orderby_customfields_settings .orderby_custom_fields, .orderby_ignore_words_settings .orderby_ignore_words').hide();
+
 			if( OrderBy == 'custom_fields' ) {
-					
-				$(box_el).find('.orderby_customfields_settings .orderby_custom_fields').slideDown();
+				
+				$(box_el).find('.orderby_customfields_settings .orderby_custom_fields').show();
 		
-			} else {
-		
-				$(box_el).find('.orderby_customfields_settings .orderby_custom_fields').slideUp();
+			} else if( OrderBy == 'title' ) {
+				
+				$(box_el).find('.orderby_ignore_words_settings .orderby_ignore_words').show();
 		
 			}
 
@@ -81,6 +83,22 @@ jQuery(document).ready(function($) {
 	$('.apsc .postbox .orderby_custom_fields .custom_fields_lists li .custom_fields_target_click').on('click', function ( ev ) {
 		
 		$(ev.target).parent().parent().parent().find('.orderby_set').val( $(ev.target).text() );
+		
+		return false;
+
+	});
+
+	$('.apsc .postbox .orderby_ignore_words_settings #add_ignore_word').on('click', function ( ev ) {
+		
+		$(ev.target).parent().parent().append( $(ev.target).parent().siblings('#add_ignore_field').html() );
+		
+		return false;
+
+	});
+	
+	$(document).on('click', '.apsc .postbox .orderby_ignore_words_settings .remove_ignore_word', function ( ev ) {
+		
+		$(ev.target).parent().remove();
 		
 		return false;
 
