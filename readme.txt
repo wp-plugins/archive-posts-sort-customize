@@ -1,9 +1,9 @@
 === Archive Posts Sort Customize ===
 Contributors: gqevu6bsiz
-Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_5
+Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_5_1
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
-Tested up to: 4.1
+Tested up to: 4.1.1
 Stable tag: 1.5
 License: GPL2
 
@@ -35,6 +35,9 @@ These lists to Customization is possible.
 2. Sort support of Custom fields
 
 == Changelog ==
+
+= 1.5.1 =
+* Supported: Sort of comma in value of custom fields.
 
 = 1.5 =
 * Added: Order field of Page Attributes of the Sort Target.
