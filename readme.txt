@@ -3,8 +3,8 @@ Contributors: gqevu6bsiz
 Donate link: http://gqevu6bsiz.chicappa.jp/please-donation/?utm_source=wporg&utm_medium=donate&utm_content=apsc&utm_campaign=1_5_1
 Tags: home, category, post, posts, tag, archive, sort
 Requires at least: 3.6.1
-Tested up to: 4.1.1
-Stable tag: 1.5
+Tested up to: 4.2.2
+Stable tag: 1.5.1
 License: GPL2
 
 Customize the display order of the list of Archive Posts.
@@ -37,7 +37,7 @@ These lists to Customization is possible.
 == Changelog ==
 
 = 1.5.1 =
-* Supported: Sort of comma in value of custom fields.
+* Security enhancement: Escape to add_query_arg/remove_query_arg.
 
 = 1.5 =
 * Added: Order field of Page Attributes of the Sort Target.

@@ -17,7 +17,7 @@ wp_enqueue_style( $APSC->PageSlug , $this->get_asset_url() . 'manage.css', array
 
 		<div id="postbox-container-1" class="postbox-container">
 
-			<form id="<?php echo $APSC->PageSlug; ?>_form" method="post" action="<?php echo remove_query_arg( $APSC->MsgQ ); ?>">
+			<form id="<?php echo $APSC->PageSlug; ?>_form" method="post" action="<?php echo esc_url( remove_query_arg( $APSC->MsgQ ) ); ?>">
 				<input type="hidden" name="<?php echo $APSC->UPFN; ?>" value="Y">
 				<?php wp_nonce_field( $APSC->Nonces["value"] , $APSC->Nonces["field"] ); ?>
 				<input type="hidden" name="record_field" value="monthly" />

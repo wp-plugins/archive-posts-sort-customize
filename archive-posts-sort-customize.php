@@ -53,7 +53,7 @@ class APSC
 
 	function __construct() {
 
-		$this->Ver = '1.5.1 beta';
+		$this->Ver = '1.5.1';
 		$this->Name = 'Archive Post Sort Customize';
 		$this->Dir = plugin_dir_path( __FILE__ );
 		$this->Url = plugin_dir_url( __FILE__ );

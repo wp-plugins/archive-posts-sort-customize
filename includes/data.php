@@ -151,7 +151,7 @@ class APSC_Data
 				if( $APSC->DonateKey == $SubmitKey ) {
 
 					update_option( $APSC->ltd . '_donated' , $SubmitKey );
-					wp_redirect( add_query_arg( $APSC->MsgQ , 'donated' , remove_query_arg( $APSC->MsgQ ) ) );
+					wp_redirect( esc_url_raw( add_query_arg( $APSC->MsgQ , 'donated' , remove_query_arg( $APSC->MsgQ ) ) ) );
 					exit;
 
 				}
@@ -180,7 +180,10 @@ class APSC_Data
 						
 						$use = 1;
 						$posts_per_page = strip_tags( $setting['posts_per_page'] );
-						$posts_per_page_num = intval( $setting['posts_per_page_num'] );
+						$posts_per_page_num = false;
+						if( !empty( $setting['posts_per_page_num'] ) ) {
+							$posts_per_page_num = intval( $setting['posts_per_page_num'] );
+						}
 						$order = strip_tags( $setting['order'] );
 						$orderby = strip_tags( $setting['orderby'] );
 						$orderby_set = strip_tags( $setting['orderby_set'] );
@@ -211,7 +214,7 @@ class APSC_Data
 					$Record = $APSC->Record[$RecordField];
 					
 					update_option( $Record , $Update );
-					wp_redirect( add_query_arg( $APSC->MsgQ , 'update' , remove_query_arg( $APSC->MsgQ ) ) );
+					wp_redirect( esc_url_raw( add_query_arg( $APSC->MsgQ , 'update' , remove_query_arg( $APSC->MsgQ ) ) ) );
 					exit;
 
 				}
@@ -228,7 +231,7 @@ class APSC_Data
 
 		$Record = $APSC->Record[strip_tags( $_POST['record_field'] )];
 		delete_option( $Record );
-		wp_redirect( add_query_arg( $APSC->MsgQ , 'delete' , remove_query_arg( $APSC->MsgQ ) ) );
+		wp_redirect( esc_url_raw( add_query_arg( $APSC->MsgQ , 'delete' , remove_query_arg( $APSC->MsgQ ) ) ) );
 		exit;
 
 	}

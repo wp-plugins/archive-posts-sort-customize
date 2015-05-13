@@ -106,18 +106,6 @@ class APSC_Filter
 
 							foreach( $custom_fields as $cf ) {
 
-								if ( strpos( $cf , ',' ) !== false ) {
-									
-									$cf = str_replace( ',' , '' , $cf );
-									
-								}
-
-								if ( strpos( $cf , '.' ) !== false ) {
-									
-									$cf = str_replace( '.' , '' , $cf );
-									
-								}
-								
 								if( !is_numeric( $cf ) ) {
 
 									$numeric = false;

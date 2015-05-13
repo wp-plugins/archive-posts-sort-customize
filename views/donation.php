@@ -44,7 +44,7 @@ global $APSC;
 					<li>- <?php _e( 'Ensure time as the father of Sunday' , $APSC->ltd ); ?></li>
 				</ul>
 			</div>
-			<form id="donation_form" method="post" action="<?php echo remove_query_arg( $APSC->MsgQ ); ?>">
+			<form id="donation_form" method="post" action="<?php echo esc_url( remove_query_arg( $APSC->MsgQ ) ); ?>">
 				<h4 style="color: #FFF;"><?php _e( 'If you have already donated to.' , $APSC->ltd ); ?></h4>
 				<p style="color: #FFF;"><?php _e( 'Please enter the \'Donate delete key\' that have been described in the \'Line Break First and End download page\'.' , $APSC->ltd ); ?></p>
 				<input type="hidden" name="<?php echo $APSC->UPFN; ?>" value="Y" />
@@ -61,7 +61,7 @@ global $APSC;
 	<div class="stuffbox" id="aboutbox">
 		<h3><span class="hndle"><?php _e( 'About plugin' , $APSC->ltd ); ?></span></h3>
 		<div class="inside">
-			<p><?php _e( 'Version checked' , $APSC->ltd ); ?> : 3.6.1 - 4.1</p>
+			<p><?php _e( 'Version checked' , $APSC->ltd ); ?> : 3.6.1 - 4.2.2</p>
 			<ul>
 				<li><a href="<?php echo $this->get_author_url( '' , 'side' ); ?>" target="_blank"><?php _e( 'Developer\'s site' , $APSC->ltd ); ?></a></li>
 				<li><a href="http://wordpress.org/support/plugin/<?php echo $APSC->PluginSlug; ?>" target="_blank"><?php _e( 'Support Forums' ); ?></a></li>
